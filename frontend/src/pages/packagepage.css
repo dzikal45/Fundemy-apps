@@ -58,4 +58,9 @@
 
 button{
     width: 100%;
+    background-color: #A4D0BA;
+}
+
+.button :active {
+    background-color: #FABD2E;
 }

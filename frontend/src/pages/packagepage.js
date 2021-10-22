@@ -20,22 +20,51 @@ const Packagepage = () => {
                         <p>Try it free</p>
                         <h2>FREE</h2>
                         <button> Choose Package</button>
-                        </Container>
+                    </Container>
                     </div>
                     
                 </Col>
 
                 <Col md={3} xs={12}>
-                    <div className="card"></div>
+                    
+                    <div className="cardfree">
+                    <Container style={{padding:"7%"}}>
+                        <h5>3 Months</h5>
+                        <p>	&#40; 90 days 	&#41;</p>
+                        <h2>Rp. 75.000</h2>
+                        <button> Choose Package</button>
+                    </Container>
+                    </div>
+                    
                 </Col>
 
                 <Col md={3} xs={12}>
-                <div className="card"></div>                
+                    
+                    <div className="cardfree">
+                    <Container style={{padding:"7%"}}>
+                        <h5>6 Months</h5>
+                        <p>	&#40; 180 days 	&#41;</p>
+                        <h2>Rp. 144.000</h2>
+                        <button> Choose Package</button>
+                    </Container>
+                    </div>
+                    
                 </Col>
 
                 <Col md={3} xs={12}>
-                <div className="card"></div>
+                    
+                    <div className="cardfree">
+                    <Container style={{padding:"7%"}}>
+                        <h5>1 Year</h5>
+                        <p>	&#40; 365 days 	&#41;</p>
+                        <h2>Rp. 228.000</h2>
+                        <button> Choose Package</button>
+                    </Container>
+                    </div>
+                    
                 </Col>
+
+   
             </Row>
         </div>
         </>
