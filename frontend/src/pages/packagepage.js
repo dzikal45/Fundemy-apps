@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Row, Container } from "react-bootstrap";
 import Navbar from "../component/navbar/navbarputih";
 import './packagepage.css'
+import bear from '../component/icons/bearrr 1.png'
+import lion from '../component/icons/lion-3 1.png'
+import tupai from '../component/icons/tupai 1.png'
+import testimoni from '../component/icons/testimoni paket.png'
+import footer from '../component/icons/footer paket.png'
 
 const Packagepage = () => {
     return (
@@ -16,22 +21,23 @@ const Packagepage = () => {
                     
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h5>FREE TRIAL</h5>
+                        <h1 style={{color: "#501E65", marginTop: "20px"}}>FREE TRIAL</h1>
                         <p>Try it free</p>
-                        <h2>FREE</h2>
-                        <button> Choose Package</button>
+                        <h2 style={{margin: "40px"}}>FREE</h2>
+                        <button
+                        > Choose Package</button>
                     </Container>
                     </div>
                     
                 </Col>
 
                 <Col md={3} xs={12}>
-                    
+                    <img src={bear} />
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h5>3 Months</h5>
+                        <h5 style={{color: "#501E65", marginTop: "20px"}}>3 Months</h5>
                         <p>	&#40; 90 days 	&#41;</p>
-                        <h2>Rp. 75.000</h2>
+                        <h2 style={{margin: "40px"}}>Rp. 75.000</h2>
                         <button> Choose Package</button>
                     </Container>
                     </div>
@@ -39,25 +45,25 @@ const Packagepage = () => {
                 </Col>
 
                 <Col md={3} xs={12}>
-                    
+                    <img src={tupai} />
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h5>6 Months</h5>
+                        <h5 style={{color: "#501E65", marginTop: "20px"}}>6 Months</h5>
                         <p>	&#40; 180 days 	&#41;</p>
-                        <h2>Rp. 144.000</h2>
-                        <button> Choose Package</button>
+                        <h2 style={{margin: "40px"}}>Rp. 144.000</h2>
+                        <button onClick> Choose Package</button>
                     </Container>
                     </div>
                     
                 </Col>
 
                 <Col md={3} xs={12}>
-                    
+                    <img src={lion} />
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h5>1 Year</h5>
+                        <h5 style={{color: "#501E65", marginTop: "20px"}}>1 Year</h5>
                         <p>	&#40; 365 days 	&#41;</p>
-                        <h2>Rp. 228.000</h2>
+                        <h2 style={{margin: "40px"}}>Rp.228.000</h2>
                         <button> Choose Package</button>
                     </Container>
                     </div>
@@ -67,6 +73,10 @@ const Packagepage = () => {
    
             </Row>
         </div>
+        <div style={{height:"120px"}}></div>
+        <img src={testimoni} width="100%"/>
+        <div style={{height:"120px"}}></div>
+        <img src={footer} width="100%"/>
         </>
     )
 }

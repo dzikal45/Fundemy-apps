@@ -59,8 +59,9 @@
 button{
     width: 100%;
     background-color: #A4D0BA;
+    border-radius: 10px;
 }
 
-.button :active {
+button:hover {
     background-color: #FABD2E;
 }
