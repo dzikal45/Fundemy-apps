@@ -28,7 +28,7 @@
 .tabs {
 	position: relative;
 	display: flex;
-	min-height: 300px;
+	min-height: 500px;
 	border-radius: 8px 8px 0 0;
 	overflow: hidden;
 }
@@ -45,18 +45,20 @@
 	
 	padding: 10px;
 	text-align: center;
-	background: #9768D1;
+	color: #603575;
 	cursor: pointer;
 	transition: background 0.5s ease;
+	border-bottom: 1px solid #89559F;
 	
 }
 
 .tabby-tab label:hover {
-	background: #7B52AB;
+	background: #FABD2E;
 }
 
 .tabby-content {
 	position: absolute;
+	height: fit-content;
 	
 	left: 0; bottom: 0; right: 0;
 	/* clear the tab labels */
@@ -64,7 +66,7 @@
 	
 	padding: 20px;
 	border-radius: 0 0 8px 8px;
-	background: #553285;
+	/* background: #553285; */
 	
 	transition: 
 		opacity 0.8s ease,
@@ -88,7 +90,7 @@
 
 .tabby-tab [type=radio] { display: none; }
 [type=radio]:checked ~ label {
-	background: #553285;
+	background: #FABD2E;
 	z-index: 2;
 }
 

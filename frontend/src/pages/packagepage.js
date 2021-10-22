@@ -6,7 +6,7 @@ import bear from '../component/icons/bearrr 1.png'
 import lion from '../component/icons/lion-3 1.png'
 import tupai from '../component/icons/tupai 1.png'
 import testimoni from '../component/icons/testimoni paket.png'
-import footer from '../component/icons/footer paket.png'
+import Footer from '../component/footer/footer';
 
 const Packagepage = () => {
     return (
@@ -76,7 +76,15 @@ const Packagepage = () => {
         <div style={{height:"120px"}}></div>
         <img src={testimoni} width="100%"/>
         <div style={{height:"120px"}}></div>
-        <img src={footer} width="100%"/>
+        <div className="separator-sage">
+            
+            </div>
+            <div className="separator-purple">
+                
+            </div>
+        
+        <Footer />
+
         </>
     )
 }

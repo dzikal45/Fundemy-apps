@@ -16,8 +16,15 @@ import Tabs from '@material-ui/core/Tabs';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
+import fotomas from '../component/icons/fotomasmas.png'
 import { CustomInput, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input } from "reactstrap";
-
+import Footer from '../component/footer/footer'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+import abc from "../component/icons/abc.jpg"
 
 const labels = {
   0.5: '0.5',
@@ -44,8 +51,11 @@ const Detailpage = () => {
        
         <>
         <Navbar />
-        <Container>
-        <div style={{height:"180px"}}></div>
+        <div style={{margin:"100px"}}>
+        {/* <div style={{height:"50px"}}></div> */}
+    <div style={{height:"40px"}}></div>
+    <Row>
+        <Col md={9} fluid>
         <h1 className="headtext1">A B C</h1>
         <Box
       sx={{
@@ -62,65 +72,132 @@ const Detailpage = () => {
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
       <Box sx={{ ml: 2 }}>{labels[value]} (2 Rating)</Box>
+      <div style={{height:"50px"}}></div>
+
     </Box>
-    <div style={{height:"40px"}}></div>
-    <Row>
-        <Col md={9} fluid>
+
     <div className='player-wrapper'>
         <ReactPlayer
           className='react-player'
-          url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+          url='https://www.youtube.com/watch?v=_UR-l3QI2nE'
           width='100%'
           height='100%'
+    
         />
         
       </div>
 	
-
+      <div style={{height:"50px"}}></div>
 
 	<div class="tabs">
 		<div class="tabby-tab">
 			<Input type="radio" id="tab-1" name="tabby-tabs" checked/>
-			<label for="tab-1">Tabby Tab 1</label>
+			<label for="tab-1">Overview</label>
 			<div class="tabby-content">
-				<img src="http://i64.tinypic.com/20qrlc.png"/>
-				<p>Purr while eating meowing non stop for food or chase laser sleep on dog bed, force dog to sleep on floor, so play riveting piece on synthesizer keyboard hiss at vacuum cleaner. Stares at human while pushing stuff off a table spot something, big eyes, big eyes, crouch, shake butt, prepare to pounce so refuse to leave cardboard box.</p>
+				<p style={{fontSize:"20px", fontWeight:"bold"}}>Course Description</p>
+        <p>Pada course ini akan mempelajari dan mengenal huruf A, B, dan C.</p>
 			</div>
 		</div>
 
 		<div class="tabby-tab">
 			<Input type="radio" id="tab-2" name="tabby-tabs"/>
-			<label for="tab-2">Tabby Tab 2</label>
+			<label for="tab-2">Teacher</label>
 			<div class="tabby-content">
-				<img src="http://i63.tinypic.com/wtykg4.png"/>
-				<p>Cats go for world domination if it fits, i sits, meowwww but claw drapes, or sleep in the bathroom sink. Missing until dinner time under the bed, or eat from dog's food hide from vacuum cleaner kick up litter but lie on your belly and purr when you are asleep.</p>
+				<img src={fotomas} style={{height:"400px"}}/>
+        <p style={{fontSize:"20px", fontWeight:"bold"}}>Sutrisno</p>
+        <p style={{fontSize:"15px", fontWeight:"bold", color:"#89559F"}}>Guru Bahasa di Olif Kindergarten</p>
+        <p>Halo!! Nama saya Sutrisno tetapi biasa dipanggil Ka Nono. Disini saya akan mengenalkan apa itu alphabet A, B, dan C.</p>
+
 			</div>
 		</div>
 
 		<div class="tabby-tab">
 			<Input type="radio" id="tab-3" name="tabby-tabs"/>
-			<label for="tab-3">Tabby Tab 3</label>
+			<label for="tab-3">Reviews</label>
 			<div class="tabby-content">
-					<img src="http://i66.tinypic.com/wuhy7b.png"/>
-					<p>Throwup on your pillow wake up human for food at 4am and hide when guests come over, yet inspect anything brought into the house.</p>
-			</div>
-		</div>
-
-		<div class="tabby-tab">
-			<Input type="radio" id="tab-4" name="tabby-tabs"/>
-			<label for="tab-4">Tabby Tab 4</label>
-			<div class="tabby-content">
-				<img src="http://i63.tinypic.com/kakc9i.png"/>
-				<p>Use lap as chair love to play with owner's hair tie pooping rainbow while flying in a toasted bread costume in space. Run in circles loves cheeseburgers, nap all day kick up litter. Stick butt in face hide when guests come over.</p>
-				
-			</div>
+onprogress			</div>
 		</div>
 		
 	</div>
 
       </Col>
       <Col md={3}>
-          tes</Col> 
+        
+        <Container>
+          <p style={{fontSize:"20px", color:"#89559F", marginTop:"20px"}}> Next Course </p>
+          <div style={{height:"2px", width:"100%", backgroundColor:"#FABD2E", marginTop:"10px", marginBottom:"20px"}}></div>
+          <div style={{justifyContent:"center", padding:"28px", margin:"5px", borderRadius:"10px", backgroundColor:"#A4D0BA"}}>
+   
+          <Card sx={{  borderRadius:"10px" }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="120"
+          image={abc}
+     
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            D E F
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+
+
+  <div style={{height:"20px"}}></div>
+
+    <Card sx={{borderRadius:"10px" }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="120"
+          image={abc}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            G H I
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  
+    <div style={{height:"20px"}}></div>
+    <Card sx={{ borderRadius:"10px" }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="120"
+          image={abc}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+           J K L
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    <div style={{height:"20px"}}></div>
+
+    <Card sx={{  borderRadius:"10px" }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="120"
+          image={abc}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            M N O
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+ 
+
+          </div>
+          </Container>
+          </Col> 
           </Row>  
         
 
@@ -129,7 +206,14 @@ const Detailpage = () => {
           
           
           
-           </Container>
+           </div>
+           <div className="separator-sage">
+            
+            </div>
+            <div className="separator-purple">
+                
+            </div>
+           <Footer />
 
     {/* <img src={headercourse} style={{width:"100%", height: "undefined"}}></img> */}
     </>

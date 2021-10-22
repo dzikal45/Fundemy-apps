@@ -17,6 +17,8 @@ const Subjectpage = () => {
         <p className="bodytext">Choose the subject</p>
         <div className="boxpur" fluid style={{marginTop:"75px"}}>
         <Container>
+        <div style={{height:"50px"}}></div>
+
         <Row>
           <Col md={4}>
             <NavLink to="/listcourse">
