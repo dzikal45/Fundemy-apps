@@ -18,11 +18,11 @@ const Packagepage = () => {
         <div className="boxpur" style={{marginTop:"75px"}}>
             <Row>
                 <Col md={3} xs={12}>
-                    
+                    <img src={lion} />
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h1 style={{color: "#501E65", marginTop: "20px"}}>FREE TRIAL</h1>
-                        <p>Try it free</p>
+                        <h1 className="purple-text">FREE TRIAL</h1>
+                        <p className="grey-text">Try it free</p>
                         <h2 style={{margin: "40px"}}>FREE</h2>
                         <button
                         > Choose Package</button>
@@ -35,8 +35,8 @@ const Packagepage = () => {
                     <img src={bear} />
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h5 style={{color: "#501E65", marginTop: "20px"}}>3 Months</h5>
-                        <p>	&#40; 90 days 	&#41;</p>
+                        <h1 className="purple-text">3 Months</h1>
+                        <p className="grey-text">	&#40; 90 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp. 75.000</h2>
                         <button> Choose Package</button>
                     </Container>
@@ -48,8 +48,8 @@ const Packagepage = () => {
                     <img src={tupai} />
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h5 style={{color: "#501E65", marginTop: "20px"}}>6 Months</h5>
-                        <p>	&#40; 180 days 	&#41;</p>
+                        <h1 className="purple-text">6 Months</h1>
+                        <p className="grey-text">	&#40; 180 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp. 144.000</h2>
                         <button onClick> Choose Package</button>
                     </Container>
@@ -61,8 +61,8 @@ const Packagepage = () => {
                     <img src={lion} />
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h5 style={{color: "#501E65", marginTop: "20px"}}>1 Year</h5>
-                        <p>	&#40; 365 days 	&#41;</p>
+                        <h1 className="purple-text">1 Year</h1>
+                        <p className="grey-text">	&#40; 365 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp.228.000</h2>
                         <button> Choose Package</button>
                     </Container>
@@ -74,7 +74,7 @@ const Packagepage = () => {
             </Row>
         </div>
         <div style={{height:"120px"}}></div>
-        <img src={testimoni} width="100%"/>
+        <img src={testimoni} width="100%" style={{margin: "auto"}}/>
         <div style={{height:"120px"}}></div>
         <div className="separator-sage">
             
