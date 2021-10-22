@@ -7,6 +7,7 @@ const Homepage = () => {
         <Row>
             <Row>
                 <img src={gambar1} width="100%" style={{marginLeft:"100px"}} alt="logo" />
+                testiiii
             </Row>
         </Row>
     )
