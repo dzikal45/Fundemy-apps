@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;800&display=swap');
+
+
+.headtext1{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    color: #501E65;
+ 
+}
+.player-wrapper {
+    position: relative;
+    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+  }
+  
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .css-1a4cg4j-MuiButtonBase-root-MuiTab-root{
+      width: 200px;
+  }
+
+
+.tabs {
+	position: relative;
+	display: flex;
+	min-height: 300px;
+	border-radius: 8px 8px 0 0;
+	overflow: hidden;
+}
+
+.tabby-tab {
+	flex: 1;
+}
+
+.tabby-tab label {
+	display: block;
+	box-sizing: border-box;
+	/* tab content must clear this */
+		height: 40px;
+	
+	padding: 10px;
+	text-align: center;
+	background: #9768D1;
+	cursor: pointer;
+	transition: background 0.5s ease;
+	
+}
+
+.tabby-tab label:hover {
+	background: #7B52AB;
+}
+
+.tabby-content {
+	position: absolute;
+	
+	left: 0; bottom: 0; right: 0;
+	/* clear the tab labels */
+		top: 40px; 
+	
+	padding: 20px;
+	border-radius: 0 0 8px 8px;
+	background: #553285;
+	
+	transition: 
+		opacity 0.8s ease,
+		transform 0.8s ease		;
+	
+	/* show/hide */
+		opacity: 0;
+		transform: scale(0.1);
+		transform-origin: top left;
+	
+}
+
+.tabby-content img {
+	float: left;
+	margin-right: 20px;
+	border-radius: 8px;
+}
+
+
+/* MAKE IT WORK ----- */
+
+.tabby-tab [type=radio] { display: none; }
+[type=radio]:checked ~ label {
+	background: #553285;
+	z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tabby-content {
+	z-index: 1;
+	
+	/* show/hide */
+		opacity: 1;
+		transform: scale(1);
+}
+
+/* BREAKPOINTS ----- */
+@media screen and (max-width: 767px) {
+	.tabs { min-height: 400px;}
+}
+
+@media screen and (max-width: 480px) {
+	.tabs { min-height: 580px; }
+	.tabby-tab label { 
+		height: 60px;
+	}
+	.tabby-content { top: 60px; }
+	.tabby-content img {
+		float: none;
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+}

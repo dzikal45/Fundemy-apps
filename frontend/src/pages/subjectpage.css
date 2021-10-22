@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+
+.cardsub{
+    /* position: absolute; */
+    width: 334px;
+    height: 334px;
+    background: #FFFFFF;
+    border-radius: 50px;
+}
+
+
+
+.titlecardsub{
+    font-family: 'Mulish',sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 30px;
+line-height: 90px;
+color: #202020;
+}

@@ -1,31 +1,44 @@
 import React from 'react'
 import { Col, Row, Container } from "react-bootstrap";
+import Navbar from "../component/navbar/navbarputih";
+import './packagepage.css'
 
 const Packagepage = () => {
     return (
-        <div className="">
+        <>
+        <Navbar />
+        <div style={{height:"180px"}}></div>
+        <h1 className="headtext">Pricing & Benefit Subscribing</h1>
+        <p className="bodytext">Choose your package and start teaching your kids with us</p>
+        <div className="boxpur" style={{marginTop:"75px"}}>
             <Row>
-                <Col>
-                    Paket 1 Bulan
+                <Col md={3} xs={12}>
+                    
+                    <div className="cardfree">
+                    <Container style={{padding:"7%"}}>
+                        <h5>FREE TRIAL</h5>
+                        <p>Try it free</p>
+                        <h2>FREE</h2>
+                        <button> Choose Package</button>
+                        </Container>
+                    </div>
+                    
                 </Col>
 
-                <Col>
-                    Paket 3 Bulan
+                <Col md={3} xs={12}>
+                    <div className="card"></div>
                 </Col>
 
-                <Col>
-                    Paket 4 Bulan
+                <Col md={3} xs={12}>
+                <div className="card"></div>                
                 </Col>
 
-                <Col>
-                    Paket 6 Bulan
-                </Col>
-
-                <Col>
-                    Paket 1 Tahun
+                <Col md={3} xs={12}>
+                <div className="card"></div>
                 </Col>
             </Row>
         </div>
+        </>
     )
 }
 
