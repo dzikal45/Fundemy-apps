@@ -1,9 +1,12 @@
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '30d'
+exports.generate= (id) => {
+    return jwt.sign({ id }, process.env.SECRET_KEY, {
+        expiresIn: '1h'
     });
 }
 
-export default generateToken;
+
+
+// export default generateToken;
