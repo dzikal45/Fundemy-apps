@@ -70,6 +70,7 @@ import {
     Flex,
   } from "../../elements/navbarElement";
 import logo from "../icons/secondlogo.png";
+import logocolor from "../icons/logocolor.png";
 import coba from "../icons/Try it free.png";
 import * as React from "react";
 import {
@@ -95,7 +96,7 @@ const useStyles = makeStyles({
   },
   linkText: {
     textDecoration: `none`,
-    color: `white`,
+    color: `#89559F`,
     display: 'flex'
   }
 });
@@ -110,12 +111,12 @@ const Header = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed" style={{backgroundColor:"#89559F"}}>
+    <AppBar position="fixed" style={{backgroundColor:"white"}}>
       <Toolbar>
         <Container maxWidth="100%" className={classes.navbarDisplayFlex}>
         <NavLink className="text-decoration-none" to="/">
                                  <Flex>
-                                     <img src={logo} width="200" alt="logo" style={{marginBottom:"10px", marginTop:"10px"}}/>
+                                     <img src={logocolor} width="200" alt="logo" style={{marginBottom:"10px", marginTop:"10px"}}/>
                                </Flex>
                              </NavLink>
           <List

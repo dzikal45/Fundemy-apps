@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;800&display=swap');
+
+
+.headtext{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    color: #501E65;
+    text-align: center;
+}
+
+.bodytext{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: #707070;
+    text-align: center;
+}
+
+.purple-text {
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    color: #501E65;
+    text-align: center;
+    margin-top: 20px
+}
+
+.grey-text {
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: #707070;
+    text-align: center;
+}
+
+.boxpur{
+    width: 90%;
+    height: 679px;
+    background: #FCFAFF;
+    border-radius: 35px;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    /* display: absolute; */
+    position: relative;
+}
+
+.cardfree{
+    position: absolute;
+    width: 290px;
+    height: 302px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(161, 161, 161, 0.2);
+    box-sizing: border-box;
+    box-shadow: 2px 2px 10px rgba(159, 159, 159, 0.25);
+    border-radius: 25px;
+}
+
+.card{
+    /* position: absolute; */
+    width: 290px;
+    height: 376px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(161, 161, 161, 0.2);
+    box-sizing: border-box;
+    box-shadow: 2px 2px 10px rgba(159, 159, 159, 0.25);
+    border-radius: 25px;
+    /* margin-bottom: 10px; */
+    position:absolute;
+}
+
+button{
+    width: 100%;
+    background-color: #A4D0BA;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #FABD2E;
+}
