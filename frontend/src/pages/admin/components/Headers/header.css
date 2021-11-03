@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Mada:wght@400;500&display=swap');
+
+.title{
+font-family: 'Mada', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 42px;
+color: #A6A6A6;
+}
+
+.angka{
+    font-family: 'Mada', sans-serif;
+    font-style: normal;
+font-weight: bold;
+font-size: 50px;
+line-height: 65px;
+color: #501E65;
+}
+
+.hello{
+font-family: 'Mada', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 25px;
+line-height: 32px;
+color: #000000;
+}

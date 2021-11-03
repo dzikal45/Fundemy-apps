@@ -19,23 +19,6 @@
     text-align: center;
 }
 
-.purple-text {
-    font-family: 'Mulish', sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    color: #501E65;
-    text-align: center;
-    margin-top: 20px
-}
-
-.grey-text {
-    font-family: 'Mulish', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    color: #707070;
-    text-align: center;
-}
-
 .boxpur{
     width: 90%;
     height: 679px;
@@ -52,7 +35,7 @@
 .cardfree{
     position: absolute;
     width: 290px;
-    height: 302px;
+    height: 452px;
     background: #FFFFFF;
     border: 0.5px solid rgba(161, 161, 161, 0.2);
     box-sizing: border-box;
