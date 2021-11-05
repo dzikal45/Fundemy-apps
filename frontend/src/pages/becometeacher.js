@@ -1,28 +1,6 @@
 import React from 'react'
 import Navbar from "../component/navbar/navbar";
 import './becometeacher.css'
-import alphabet from "../component/icons/alphabet.png";
-import number from "../component/icons/number.png";
-import color from "../component/icons/color.png";
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
-import StarIcon from '@mui/icons-material/Star';
-import headercourse from "../component/icons/abc.jpg"
-import ReactPlayer from 'react-player'
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import TabContext from '@material-ui/lab/TabContext';
-import TabList from '@material-ui/lab/TabList';
-import TabPanel from '@material-ui/lab/TabPanel';
-import fotomas from '../component/icons/fotomasmas.png'
-import { CustomInput, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input } from "reactstrap";
-import Footer from '../component/footer/footer'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import abc from "../component/icons/abc.jpg"
 import { Col, Row, Container, Button, Form } from "react-bootstrap";
 import { NavLink as Link } from "react-router-dom";
 import { LogBtn, NavLink, RegBtn } from "../elements/loginElement"

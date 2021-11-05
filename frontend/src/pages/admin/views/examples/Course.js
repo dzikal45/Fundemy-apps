@@ -2,9 +2,9 @@ import { useState } from "react";
 import React from "react";
 import { CustomInput, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input } from "reactstrap";
 import Divider from '@mui/material/Divider';
+import { CloseButton } from "react-bootstrap";
 import {
   Col,
-  CloseButton,
   Badge,
   Card,
   CardHeader,
@@ -86,6 +86,12 @@ const Course = () => {
   BackdropComponent={Backdrop}
 >
   <Box sx={style}>
+  <div style={{float:"right"}}>
+    <button onClick={handleClose} style={{float:"right", backgroundColor:"white", borderStyle:"none"}}>
+  <CloseButton/>  </button>
+
+  </div>
+
     <Row>
       <Col md={6}>
     <h2 id="unstyled-modal-title" >Add Course</h2>
