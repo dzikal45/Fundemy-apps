@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 const navLinks = [
   { title: `Course`, path: `/subject` },
   { title: `Package`, path: `/paket` },
-  { title: `Become a Teacher`, path: `/teacher` },
+  { title: `Become a Teacher`, path: `/teacherauth` },
   { title: `Log In`, path: `/login` },
 ];
 

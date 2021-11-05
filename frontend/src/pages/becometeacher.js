@@ -7,6 +7,7 @@ import { LogBtn, NavLink, RegBtn } from "../elements/loginElement"
 import gambar from '../component/icons/login image2.png'
 import gambar2 from '../component/icons/login image.png'
 import { useState, useEffect } from 'react'
+// import Navbar from "../component/navbar/navbarputih"
 
 
 
@@ -22,6 +23,7 @@ const Teacherauth = () => {
     return (
        
         <>
+        <Navbar />
         <div className="headerteacher">
         </div>
         <Container>

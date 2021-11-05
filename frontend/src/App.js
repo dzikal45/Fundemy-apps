@@ -37,7 +37,7 @@ function App() {
        <Redirect from="/admin" to="/admin/index" />
        <Route path="/teacher" render={(props) => <TeacherLayout {...props} />} />
        <Redirect from="/teacher" to="/teacher/index" />
-        <Route path ="/teacher" exact component={Teacherauth} />
+        <Route path ="/teacherauth" exact component={Teacherauth} />
         <Route path ="/editprofile" exact component={EditProfile} />
         <Route path ="/payment" exact component={Payment} />
       </Switch> 
