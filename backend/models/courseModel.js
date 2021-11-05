@@ -36,14 +36,14 @@ const courseSchema = Mongoose.Schema({
             sparse:true
         },
         status_lulus:{
-            type: String,
+            type: Boolean,
             sparse:true
             
         },
     
    
     
-        review:{
+        
             review_content:{
                 type: String,
                 
@@ -63,7 +63,7 @@ const courseSchema = Mongoose.Schema({
                 sparse: true,
                
             },
-        },
+        
     
 },
 {

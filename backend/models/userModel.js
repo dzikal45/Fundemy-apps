@@ -25,32 +25,32 @@ const userSchema = mongoose.Schema({
     invoice: {
         invoiceId :{
             type:String,
-            unique:true,
+            
             sparse: true,
             default : null
         },
         invoice_date:{
             type: Date,
-            unique:true,
+            
             sparse: true,
             default : null
 
         },
         invoice_status:{
             type:String,
-            unique:true,
+            
             sparse: true,
             default : null
         },
         payment_method:{
             type: String,
-            unique:true,
+            
             sparse: true,
             default : null
         },
         total_payment:{
             type: Number,
-            unique:true,
+        
             sparse: true,
             default : null
         }
@@ -59,13 +59,13 @@ const userSchema = mongoose.Schema({
     course_enrollment:{
         date_enrollment:{
             type: Date,
-            unique:true,
+            
             sparse: true,
             default : null
         },
         date_of_completion:{
             type: Date,
-            unique:true,
+        
             sparse: true,
             default : null
         },
