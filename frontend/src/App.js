@@ -18,6 +18,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../src/pages/admin/assets/scss/argon-dashboard-react.scss"
 
 import AdminLayout from "./pages/admin/layouts/Admin.js";
+import TeacherLayout from "./pages/teacher/layouts/Teacher.js";
 
 function App() {
   return (
@@ -33,7 +34,9 @@ function App() {
         <Route path ="/detailpage" exact component={Detailpage} />
         {/* <Route path ="/admin" exact component={Index} /> */}
         <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-       <Redirect from="/" to="/admin/index" />
+       <Redirect from="/admin" to="/admin/index" />
+       <Route path="/teacher" render={(props) => <TeacherLayout {...props} />} />
+       <Redirect from="/teacher" to="/teacher/index" />
         <Route path ="/teacher" exact component={Teacherauth} />
         <Route path ="/editprofile" exact component={EditProfile} />
         <Route path ="/payment" exact component={Payment} />
