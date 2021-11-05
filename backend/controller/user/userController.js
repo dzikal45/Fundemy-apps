@@ -36,7 +36,7 @@ const{registerValidation,loginValidation} = require('../../validation');
             email: user.email,
             username: user.username,
             role: user.role,
-            token: generateToken.generate(user._id)
+            token: generateToken.generate(user._id,user.role)
         })
     }
     else{
@@ -70,6 +70,7 @@ exports.registerUser = expressAsyncHandler(async(req,res) => {
     }
 
     const role = 'siswa';
+    
     const user = await User.create({
         name,
         email,
@@ -99,8 +100,11 @@ exports.registerUser = expressAsyncHandler(async(req,res) => {
     }
 })
 exports.profileUser = expressAsyncHandler(async(req,res)=>{
-    const { username, password } = req.body;
-    const user = await User.findOne({ username })
+    const { id} = req.user.id;
+    
+
+
+    const user = await User.findOne({ id })
 
     if(user){
         res.status(201).json({

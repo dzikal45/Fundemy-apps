@@ -20,4 +20,10 @@ exports.loginValidation = data =>{
     });
     return  Schema.validate(data);
 }
+
+// exports.addCourseValidation = data =>{
+//     const schema = Joi.object({
+
+//     });
+// }
 //validation

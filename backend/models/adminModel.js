@@ -1,5 +1,5 @@
-import { Mongoose } from "mongoose";
 
+const mongoose = require('mongoose');
 const adminSchema = mongoose.Schema({
     name: {
         type: String,
@@ -23,4 +23,4 @@ const adminSchema = mongoose.Schema({
 {
     timestamps: true
 });
-module.exports = Mongoose.model('Admin',adminSchema);
+module.exports = mongoose.model('Admin',adminSchema);

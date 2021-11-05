@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const { ObjectId } = require('bson');
+const { string } = require('joi');
 const guruSchema = mongoose.Schema({
     name: {
         type: String,
@@ -22,8 +23,9 @@ const guruSchema = mongoose.Schema({
         unique: true,
     },
     course_id:{
-        type: ObjectId,
-        unique: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course',
+        sparse: true,
     },
     role:{
         type: String,

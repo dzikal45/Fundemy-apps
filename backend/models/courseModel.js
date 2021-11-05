@@ -1,6 +1,7 @@
-import { ObjectId } from "bson";
-import { Mongoose } from "mongoose";
-
+// import { ObjectId } from "bson";
+// import { Mongoose } from "mongoose";
+const Mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const courseSchema = Mongoose.Schema({
     course_name:{
         type: String,
@@ -30,12 +31,22 @@ const courseSchema = Mongoose.Schema({
         review:{
             review_content:{
                 type: String,
+                
+                sparse: true,
+                
             },
             rating:{
                 type: Number,
+    
+                sparse: true,
+
+                default : null
             },
             user_id:{
-                type: ObjectId,
+                type: Mongoose.Schema.Types.ObjectId,
+                ref: 'userRegister',
+                sparse: true,
+               
             },
         },
     

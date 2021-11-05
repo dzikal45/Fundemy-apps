@@ -1,8 +1,21 @@
+
+
 const expressAsyncHandler = require('express-async-handler');
 const generateToken = require('../../utils/generateToken');
 const Guru = require('../../models/guruModel');
 var Crytpojs = require('crypto-js'); 
 const{registerValidation,loginValidation} = require('../../validation');
+const db = require('../../connection/db');
+const config = require('../../utils/config');
+const firebase = require('firebase');
+//const {firebase} = require('../../connection/db');  // reference to our db 
+require('firebase/firebase-storage'); // must be required for this to 
+
+const storage = firebase.storage().ref();
+
+global.XMLHttpRequest = require("xhr2"); // must be used to avoid bug
+
+
 
 exports.authUser = expressAsyncHandler(async(req,res) => {
     
@@ -89,8 +102,8 @@ exports.registerUser = expressAsyncHandler(async(req,res) => {
     }
 })
 exports.profileUser = expressAsyncHandler(async(req,res)=>{
-    const { username} = req.body;
-    const guru = await Guru.findOne({ username })
+    const { id} = req.user.id;
+    const guru = await Guru.findOne({id })
 
     if(guru){
         res.status(201).json({
@@ -111,4 +124,41 @@ exports.profileUser = expressAsyncHandler(async(req,res)=>{
     }
 
 
+})
+
+exports.addSubject = expressAsyncHandler(async(req,res)=>{
+  
+        // Grab the file
+        const file = req.file;
+        if(!req.file) {
+            res.status(400).send("Error: No files found")
+    }else{
+
+    
+        //Format the filename
+        try {
+            // Grab the file
+            const file = req.file;
+            // Format the filename
+            const timestamp = Date.now();
+            const name = file.originalname.split(".")[0];
+            const type = file.originalname.split(".")[1];
+            const fileName = `${name}_${timestamp}.${type}`;
+             // Step 1. Create reference for file name in cloud storage 
+            const imageRef = storage.child('course_video/'+fileName);
+            const metadata = {
+                contentType: req.file.mimetype
+            }
+
+            // Step 2. Upload the file in the bucket storage
+            const snapshot = await imageRef.put(file.buffer,metadata);
+            // Step 3. Grab the public url
+            const downloadURL = await snapshot.ref.getDownloadURL();
+            
+            res.send(downloadURL);
+         }  catch (error) {
+            console.log (error)
+            res.status(400).send(error.message);
+        }
+    }
 })
