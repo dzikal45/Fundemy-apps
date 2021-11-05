@@ -13,7 +13,7 @@ const subjectSchema = mongoose.Schema({
         required: true,
     },
     subject_description:{
-        type: Text,
+        type: String,
         required: true,
     },
     course_video:{
@@ -28,7 +28,7 @@ const subjectSchema = mongoose.Schema({
     },
     quiz:{
         soal:{
-            type: Text,
+            type: String,
             sparse:true
         },
         jawaban:{

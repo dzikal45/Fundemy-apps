@@ -38,7 +38,7 @@ router.get('/',(req,res)=>{
 router.post('/register',guruController.registerUser);
 router.post('/login', guruController.authUser);
 router.get('/profile/:_id',permit("guru"),guruController.profileUser);
-router.patch('/course',permit("guru"),guruController2.addCourse);
+router.patch('/course',upload.single("file"),permit("guru"),guruController2.addCourse);
 router.post('/upload',upload.single("file"),guruController.addSubject);
 
 module.exports = router;

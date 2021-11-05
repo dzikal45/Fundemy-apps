@@ -39,7 +39,7 @@ exports.authUser = expressAsyncHandler(async(req,res) => {
             email: guru.email,
             username: guru.username,
             role: guru.role,
-            token: generateToken.generate(guru._id)
+            token: generateToken.generate(guru._id,guru.role,guru.username)
         })
     }
     else{
@@ -147,7 +147,7 @@ exports.addSubject = expressAsyncHandler(async(req,res)=>{
              // Step 1. Create reference for file name in cloud storage 
             const imageRef = storage.child('course_video/'+fileName);
             const metadata = {
-                contentType: req.file.mimetype
+                contentType: 'video/mp4'
             }
 
             // Step 2. Upload the file in the bucket storage

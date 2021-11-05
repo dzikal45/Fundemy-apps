@@ -2,6 +2,7 @@
 // import { Mongoose } from "mongoose";
 const Mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const { bool, boolean } = require('joi');
 const courseSchema = Mongoose.Schema({
     course_name:{
         type: String,
@@ -11,22 +12,36 @@ const courseSchema = Mongoose.Schema({
         type: String,
         required: true
     },
-    content:{
-        type: String,
-        required: true
-    },
-    author:{
-        type: String,
-        required: true
-    },
-    category:{
-        type: String,
-        required: true
-    },
-    grades:{
-        type: String,
-        required: true
-    },
+  
+        video_name:{
+            type: String,
+            sparse: true
+        },
+        video_file:{
+            type: String,
+            sparse:true
+        },
+    
+    
+        soal:{
+            type: String,
+            sparse:true
+        },
+        jawaban_benar:{
+            type:String ,
+            sparse:true
+        },
+        score:{
+            type:Number,
+            sparse:true
+        },
+        status_lulus:{
+            type: String,
+            sparse:true
+            
+        },
+    
+   
     
         review:{
             review_content:{
