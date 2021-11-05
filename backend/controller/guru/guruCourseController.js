@@ -47,7 +47,7 @@ try{
             video_name,
             video_file,
             soal,
-            jawaban_benar
+            jawaban_benar,
             
         });
         const guru = await Guru.findOneAndUpdate({username},{$push:{course_id:Course._id}},{new:true});
@@ -60,7 +60,9 @@ try{
                 course_description: Course.course_description,
                 course_id: Course._id,
                 video_name: Course.video_name,
-                video_file:Course.video_file
+                video_file:Course.video_file,
+                soal: Course.soal,
+                jawaban_benar: Course.jawaban_benar
             })
         
     }catch(error){
