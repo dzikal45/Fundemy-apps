@@ -18,14 +18,10 @@ import axios from 'axios'
 
 
 const Teacherauth = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
 
     let history = useHistory()
     const { register, handleSubmit } = useForm()
-    const handleRegis = data => {
+    const handleRegis = (data) => {
         console.log(data)
         axios
             .post("http://localhost:5000/api/guru/register", data)

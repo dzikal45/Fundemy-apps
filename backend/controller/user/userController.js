@@ -16,10 +16,11 @@ const{registerValidation,loginValidation} = require('../../validation');
 // @access Public routes 
  exports.authUser = expressAsyncHandler(async(req,res) => {
     
-    const { username, password } = req.body
+    const { username, password } = req.body;
+    res.send(req.body)
 
-    const{error} = loginValidation(req.body);
-    if(error)res.status(400).send(error.details[0].message);
+    //const{error} = loginValidation(req.body);
+    //if(error)res.status(400).send(error.details[0].message);
 
     const user = await User.findOne({ username })
     const hashedPassword = Crytpojs.AES.decrypt(

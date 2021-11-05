@@ -13,7 +13,7 @@ const Loginpage = () => {
     const handleLogin = data => {
         console.log(data)
         axios
-            .get("http://localhost:5000/api/user/login", data)
+            .post("http://localhost:5000/api/user/login", data)
             .then(() => {
                 history.push("/")
             })
@@ -48,7 +48,7 @@ const Loginpage = () => {
                                 </Form.Group>
                             </Row>
 
-                            <LogBtn type='submit' variant='primary' onSubmit={handleSubmit(handleLogin)}>Login</LogBtn>
+                            <LogBtn type='submit' variant='primary' onClick={handleSubmit(handleLogin)}>Login</LogBtn>
                             
                             <Row>
                                 Don't have an account? &nbsp;<NavLink to ="/register" >Sign up</NavLink>

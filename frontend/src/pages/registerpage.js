@@ -9,7 +9,7 @@ import { useHistory } from 'react-router';
 const Registerpage = () => {
     let history = useHistory()
     const { register, handleSubmit } = useForm()
-    const handleRegis = data => {
+    const handleRegis = (data) => {
         console.log(data)
         axios
             .post("http://localhost:5000/api/user/register", data)
@@ -58,7 +58,7 @@ const Registerpage = () => {
                         </Form.Group>
                     </Row>
 
-                    <RegBtn  type='submit' variant='primary' onSubmit={handleSubmit(handleRegis)}>Create Account</RegBtn>
+                    <RegBtn  type='submit' variant='primary' onClick={handleSubmit(handleRegis)}>Create Account</RegBtn>
                             
                         <Row>
                             Already Have an Account? &nbsp; <NavLink to ="/login" >Log in</NavLink>
