@@ -3,11 +3,24 @@ import { Col, Row, Container, Button, Form } from "react-bootstrap";
 import { NavLink as Link } from "react-router-dom";
 import { LogBtn, NavLink } from "../elements/loginElement"
 import gambar from '../component/icons/login image2.png'
-import gambar2 from '../component/icons/login image.png'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router';
+import axios from 'axios'
 
 const Loginpage = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    let history = useHistory()
+    const { register, handleSubmit } = useForm()
+    const handleLogin = data => {
+        console.log(data)
+        axios
+            .get("http://localhost:5000/api/user/login", data)
+            .then(() => {
+                history.push("/")
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
 
     return (
                 <Row>
@@ -24,18 +37,18 @@ const Loginpage = () => {
                             <Row>
                                 <Form.Group controlId='username'>
                                     <h6 style={{color:'#501E65'}}>Username</h6>
-                                    <Form.Control style={{paddingRight:"220px"}} placeholder='learnwithfun' value={username} onChange={(e) => setUsername(e.target.value)}></Form.Control>
+                                    <Form.Control style={{paddingRight:"220px"}} placeholder='learnwithfun' {...register("username")}></Form.Control>
                                 </Form.Group>
                             </Row>
 
                             <Row>
                                 <Form.Group controlId='password'>
                                     <h6 style={{color:'#501E65'}}>Password</h6>
-                                    <Form.Control style={{paddingRight:"220px", marginBottom:"40px"}} type='password' placeholder='********' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
+                                    <Form.Control style={{paddingRight:"220px", marginBottom:"40px"}} type='password' placeholder='********' {...register("password")}></Form.Control>
                                 </Form.Group>
                             </Row>
 
-                            <LogBtn type='submit' variant='primary'>Login</LogBtn>
+                            <LogBtn type='submit' variant='primary' onSubmit={handleSubmit(handleLogin)}>Login</LogBtn>
                             
                             <Row>
                                 Don't have an account? &nbsp;<NavLink to ="/register" >Sign up</NavLink>
