@@ -36,7 +36,7 @@ const Teacherauth = () => {
     const handleLogin = data => {
         console.log(data)
         axios
-            .get("http://localhost:5000/api/guru/login", data)
+            .post("http://localhost:5000/api/guru/login", data)
             .then(() => {
                 history.push("/")
             })
@@ -103,7 +103,7 @@ const Teacherauth = () => {
                         </Form.Group>
                     </Row>
 
-                    <RegBtn  type='submit' variant='primary' onSubmit={handleSubmit(handleRegis)}>Create Account</RegBtn>
+                    <RegBtn  type='submit' variant='primary' onClick={handleSubmit(handleRegis)}>Create Account</RegBtn>
                 </Form>
                     </Col>
                    
