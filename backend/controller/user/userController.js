@@ -37,7 +37,7 @@ const{registerValidation,loginValidation} = require('../../validation');
             email: user.email,
             username: user.username,
             role: user.role,
-            token: generateToken.generate(user._id,user.role)
+            token: generateToken.generate(user._id,user.role,user.username)
         })
     }
     else{

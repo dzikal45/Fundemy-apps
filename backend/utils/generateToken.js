@@ -1,7 +1,7 @@
 // import jwt from 'jsonwebtoken';
 const jwt = require('jsonwebtoken');
 
-exports.generate= (id,role) => {
+exports.generate= (id,role,username) => {
     return jwt.sign({ id,role }, process.env.SECRET_KEY, {
         expiresIn: '1h'
     });

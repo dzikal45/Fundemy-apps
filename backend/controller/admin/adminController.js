@@ -26,7 +26,7 @@ exports.authUser = expressAsyncHandler(async(req,res) => {
             email: Admin.email,
             username: Admin.username,
             role: Admin.role,
-            token: generateToken.generate(Admin._id)
+            token: generateToken.generate(Admin._id,Admin.role,Admin.username)
         })
     }
     else{
