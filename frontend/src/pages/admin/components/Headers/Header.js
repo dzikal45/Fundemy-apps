@@ -6,7 +6,7 @@ import student from '../../assets/img/student.png'
 import "./header.css"
 
 
-const Header = () => {
+const Headeradmin = () => {
   return (
       <div className="header pb-8 pt-5">
         <Container fluid>
@@ -15,8 +15,7 @@ const Header = () => {
             <p className="hello"> Hi Admin, Welcome Back! </p>
             <Row>
               <Col lg="6" xl="4">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
+                <div className="cardadmin">
                   <Container>
                    <Row>
                      <Col md={6}>
@@ -29,12 +28,11 @@ const Header = () => {
                      </Col>
                    </Row>
                    </Container>
-                  </CardBody>
-                </Card>
+              </div>
               </Col>
               <Col lg="6" xl="4">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
+              <div className="cardadmin">
+
                   <Container>
                    <Row>
                      <Col md={6}>
@@ -47,12 +45,11 @@ const Header = () => {
                      </Col>
                    </Row>
                    </Container>
-                  </CardBody>
-                </Card>
+                 </div>
               </Col>
               <Col lg="6" xl="4">
-                <Card className="card-stats mb-4 mb-xl-0">
-                  <CardBody>
+              <div className="cardadmin">
+
                     <Container>
                    <Row>
                      <Col md={6}>
@@ -65,8 +62,7 @@ const Header = () => {
                      </Col>
                    </Row>
                    </Container>
-                  </CardBody>
-                </Card>
+                  </div>
               </Col>
             </Row>
           </div>
@@ -75,4 +71,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Headeradmin;

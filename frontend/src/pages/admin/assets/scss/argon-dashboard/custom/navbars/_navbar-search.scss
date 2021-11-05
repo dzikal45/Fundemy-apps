@@ -22,48 +22,48 @@
 
 .navbar-search-dark {
     .input-group {
-        border-color: $navbar-search-dark-border-color;
+        // border-color: $navbar-search-dark-border-color;
     }
 
     .input-group-text {
-        color: $navbar-search-dark-color;
+        // color: $navbar-search-dark-color;
     }
 
     .form-control {
-        color: $navbar-search-dark-focus-color;
+        // color: $navbar-search-dark-focus-color;
 
         &::placeholder {
-            color: $navbar-search-dark-color;
+            // color: $navbar-search-dark-color;
         }
     }
 
     .focused {
         .input-group {
-            border-color: $navbar-search-dark-focus-border-color;
+            // border-color: $navbar-search-dark-focus-border-color;
         }
     }
 }
 
 .navbar-search-light {
     .input-group {
-        border-color: $navbar-search-light-border-color;
+        // border-color: $navbar-search-light-border-color;
     }
 
     .input-group-text {
-        color: $navbar-search-light-color;
+        // color: $navbar-search-light-color;
     }
 
     .form-control {
-        color: $navbar-search-light-focus-color;
+        // color: $navbar-search-light-focus-color;
 
         &::placeholder {
-            color: $navbar-search-light-color;
+            // color: $navbar-search-light-color;
         }
     }
 
     .focused {
         .input-group {
-            border-color: $navbar-search-light-focus-border-color;
+            // border-color: $navbar-search-light-focus-border-color;
         }
     }
 }

@@ -44,7 +44,7 @@ const Teacherauth = () => {
     return (
        
         <>
-        <div className="header">
+        <div className="headerteacher">
         </div>
         <Container>
           <Row>

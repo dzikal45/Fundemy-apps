@@ -7,7 +7,7 @@
 //
 // Creates a vertically aligned version of the navbar
 .navbar-vertical {
-    box-shadow: $navbar-vertical-box-shadow;
+    // box-shadow: $navbar-vertical-box-shadow;
     
     .navbar {
         border-width: 0 0 1px 0;
@@ -18,8 +18,8 @@
     // Navbar light
 
     .navbar-light {
-        background-color: $navbar-light-bg;
-        border-color: $navbar-light-border-color;
+        // background-color: $navbar-light-bg;
+        // border-color: $navbar-light-border-color;
     }
 
 

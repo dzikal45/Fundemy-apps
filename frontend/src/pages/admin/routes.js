@@ -1,7 +1,7 @@
-import Index from "views/Index.js";
-import Tables from "views/examples/Tables.js";
-import Icons from "views/examples/Icons.js";
-import Course from "views/examples/Course";
+import Index from "../admin/views/Index";
+import Student from "./views/examples/Student.js";
+import Teacher from "../admin/views/examples/Teacher.js";
+import Course from "../admin/views/examples/Course";
 var routes = [
   {
     path: "/index",
@@ -11,18 +11,18 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/icons",
+    path: "/teacher",
     name: "Teacher",
     icon: "ni ni-planet text-blue",
-    component: Icons,
+    component: Teacher,
     layout: "/admin",
   },
  
   {
-    path: "/tables",
+    path: "/student",
     name: "Students",
     icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
+    component: Student,
     layout: "/admin",
   },
   {

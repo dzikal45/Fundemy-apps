@@ -1,8 +1,10 @@
 import { useState } from "react";
 import React from "react";
 import { CustomInput, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input } from "reactstrap";
-
+import Divider from '@mui/material/Divider';
 import {
+  Col,
+  CloseButton,
   Badge,
   Card,
   CardHeader,
@@ -22,9 +24,10 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 // core components
-import Header from "components/Headers/Header.js";
+import Headeradmin from "../../components/Headers/Header.js";
 import ModalUnstyled from '@mui/core/ModalUnstyled';
 import { styled, Box } from '@mui/system';
+import './styling.css'
 
 
 const StyledModal = styled(ModalUnstyled)`
@@ -51,7 +54,7 @@ const Backdrop = styled('div')`
 `;
 
 const style = {
-  width: 700,
+  width: '1000px',
   bgcolor: 'white',
   border: '2px solid #000',
   p: 2,
@@ -66,13 +69,13 @@ const Course = () => {
   const handleClose = () => setOpen(false);
   return (
     <>
-      <Header />
+      <Headeradmin />
       {/* Page content */}
       <Container className="mt--7" fluid>
         {/* Table */}
         <Row>
           <div className="col">
-          <button type="button" onClick={handleOpen} variant="contained" color="black" size="large" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginBottom:"20px", borderStyle:"none", backgroundColor:"#FABD2E", color:"#89559F"}}>
+          <button type="button" onClick={handleOpen} variant="contained" color="black" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginBottom:"20px", borderStyle:"none", backgroundColor:"#FABD2E", color:"#89559F", width:"120px"}}>
             Add Course
             </button>
             <StyledModal
@@ -83,11 +86,13 @@ const Course = () => {
   BackdropComponent={Backdrop}
 >
   <Box sx={style}>
-    <h2 id="unstyled-modal-title">Add Course</h2>
+    <Row>
+      <Col md={6}>
+    <h2 id="unstyled-modal-title" >Add Course</h2>
     <p> Title</p>
     <Input
             type="text"
-            style={{ width: "100%", height: "100%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            style={{ width: "100%", height: "10%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="description"
             variant="outlined"
             label="Description"
@@ -100,7 +105,7 @@ const Course = () => {
           <p> Description</p>
     <Input
             type="textarea"
-            style={{ width: "100%", height: "100%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            style={{ width: "100%", height: "15%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="description"
             variant="outlined"
             label="Description"
@@ -113,7 +118,7 @@ const Course = () => {
                   <p> Video</p>
     <Input
             type="file"
-            style={{ width: "100%", height: "100%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            style={{ width: "100%", height: "15%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="description"
             variant="outlined"
             label="Description"
@@ -122,13 +127,46 @@ const Course = () => {
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
+
+        </Col>
+        <Col md={1}>
+        <Divider orientation="vertical" variant="middle"  />
+        </Col>
+        <Col md={5}>
+    <h2 id="unstyled-modal-title" >Add Quiz</h2>
+    <p> Question</p>
+    <Input
+            type="text"
+            style={{ width: "100%", height: "10%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            name="question"
+            variant="outlined"
+            label="Question"
+            placeholder="What the color is it?"
+            fullWidth
+            // value={postData.description}
+            // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
+          />
           <div style={{height:"20px"}}></div>
-                  <button variant="contained" color="black" size="large" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginRight:"20px", borderStyle:"none", backgroundColor:"#E14242", color:"white"}}>
-          Cancel
-        </button>
-        <button variant="contained" color="black" size="large" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginRight:"20px", borderStyle:"none", backgroundColor:"#A0D4BA", color:"black"}}>
-          PUBLISH
-        </button>
+          <p> Answer</p>
+    <Input
+            type="text"
+            style={{ width: "100%", height: "10%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            name="answer"
+            variant="outlined"
+            label="Answer"
+            placeholder="Red"
+            fullWidth
+            // value={postData.description}
+            // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
+          />
+          <div style={{height:"20px"}}></div>
+        </Col>
+        </Row>
+        <div style={{height:"20px"}}></div>
+
+<button variant="contained" color="black" size="large" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginRight:"20px", borderStyle:"none", backgroundColor:"#A0D4BA", color:"black"}}>
+  PUBLISH
+</button>
   </Box>
 </StyledModal>
             <Card className="shadow">

@@ -149,7 +149,7 @@
             border-radius: 0;
 
             &.focused {
-                background: darken($datepicker-range-cell-focused-background, 3%);
+                // background: darken($datepicker-range-cell-focused-background, 3%);
             }
 
             &.disabled,

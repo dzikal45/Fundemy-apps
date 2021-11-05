@@ -1,37 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// Variables
-//
-
-// Global settings
-
 $enable-caret:              true !default;
 $enable-rounded:            true !default;
 $enable-shadows:            true !default;
@@ -467,13 +433,13 @@ $table-head-letter-spacing:   1px !default;
 $table-body-font-size:        .8125rem !default;
 
 $table-dark-bg:               theme-color("default") !default;
-$table-dark-accent-bg:        rgba($white, .05) !default;
-$table-dark-hover-bg:         rgba($white, .075) !default;
-$table-dark-border-color:     lighten(theme-color("default"), 7%) !default;
+// $table-dark-accent-bg:        rgba($white, .05) !default;
+// $table-dark-hover-bg:         rgba($white, .075) !default;
+// $table-dark-border-color:     lighten(theme-color("default"), 7%) !default;
 $table-dark-color:            $body-bg !default;
 
-$table-dark-head-bg:          lighten(theme-color("default"), 4%) !default;
-$table-dark-head-color:       lighten(theme-color("default"), 35%) !default;
+// $table-dark-head-bg:          lighten(theme-color("default"), 4%) !default;
+// $table-dark-head-color:       lighten(theme-color("default"), 35%) !default;
 
 // Buttons + Forms
 
@@ -482,7 +448,7 @@ $input-btn-padding-x:         .75rem !default;
 $input-btn-line-height:       $shape-height-base !default;
 
 $input-btn-focus-width:       0 !default;
-$input-btn-focus-color:       rgba($component-active-bg, 1) !default;
+// $input-btn-focus-color:       rgba($component-active-bg, 1) !default;
 $input-btn-focus-box-shadow:  none !default;
 
 $input-btn-padding-y-sm:      .25rem !default;
@@ -618,7 +584,7 @@ $custom-control-indicator-checked-color:        $component-active-color !default
 $custom-control-indicator-checked-bg:           $component-active-bg !default;
 $custom-control-indicator-checked-border-color: $component-active-border-color !default;
 $custom-control-indicator-checked-box-shadow:   $custom-control-indicator-box-shadow !default;
-$custom-control-indicator-checked-disabled-bg:  rgba(theme-color("primary"), .5) !default;
+// $custom-control-indicator-checked-disabled-bg:  rgba(theme-color("primary"), .5) !default;
 
 $custom-control-indicator-disabled-bg:          $gray-200 !default;
 $custom-control-label-disabled-color:           $gray-600 !default;
@@ -711,7 +677,7 @@ $nav-pills-border-color:            theme-color("primary") !default;
 $nav-pills-border-radius:           $border-radius !default;
 
 $nav-pills-link-color:              theme-color("primary") !default;
-$nav-pills-link-hover-color:        darken(theme-color("primary"), 5%) !default;
+// $nav-pills-link-hover-color:        darken(theme-color("primary"), 5%) !default;
 $nav-pills-link-active-color:       color-yiq(theme-color("primary")) !default;
 $nav-pills-link-active-bg:          theme-color("primary") !default;
 $nav-pills-box-shadow:              $btn-box-shadow !default;
@@ -738,38 +704,38 @@ $navbar-search-border-radius:       2rem !default;
 $navbar-search-border-width:        2px !default;
 
 $navbar-dark-bg:                    transparent !default;
-$navbar-dark-hover-bg:              rgba(255, 255, 255, .1) !default;
-$navbar-dark-active-bg:             rgba(255, 255, 255, .1) !default;
-$navbar-dark-color:                 rgba($white, .95) !default;
-$navbar-dark-hover-color:           rgba($white, .65) !default;
-$navbar-dark-active-color:          rgba($white, .65) !default;
-$navbar-dark-disabled-color:        rgba($white, .25) !default;
+// $navbar-dark-hover-bg:              rgba(255, 255, 255, .1) !default;
+// $navbar-dark-active-bg:             rgba(255, 255, 255, .1) !default;
+// $navbar-dark-color:                 rgba($white, .95) !default;
+// $navbar-dark-hover-color:           rgba($white, .65) !default;
+// $navbar-dark-active-color:          rgba($white, .65) !default;
+// $navbar-dark-disabled-color:        rgba($white, .25) !default;
 $navbar-dark-toggler-border-color:  transparent !default;
 
-$navbar-search-dark-border-color:   rgba(255, 255, 255, .6) !default;
-$navbar-search-dark-color:          rgba(255, 255, 255, .6) !default;
-$navbar-search-dark-focus-border-color: rgba(255, 255, 255, .9) !default;
-$navbar-search-dark-focus-color:    rgba(255, 255, 255, .9) !default;
+// $navbar-search-dark-border-color:   rgba(255, 255, 255, .6) !default;
+// $navbar-search-dark-color:          rgba(255, 255, 255, .6) !default;
+// $navbar-search-dark-focus-border-color: rgba(255, 255, 255, .9) !default;
+// $navbar-search-dark-focus-color:    rgba(255, 255, 255, .9) !default;
 
-$navbar-light-bg:                   transparent !default;
-$navbar-light-hover-bg:             rgba(0, 0, 0, .1) !default;
-$navbar-light-active-bg:            rgba(0, 0, 0, .1) !default;
-$navbar-light-border-color:         $gray-100 !default;
-$navbar-light-color:                rgba($black, .5) !default;
-$navbar-light-hover-color:          rgba($black, .7) !default;
-$navbar-light-active-color:         rgba($black, .9) !default;
-$navbar-light-disabled-color:       rgba($black, .3) !default;
-$navbar-light-toggler-border-color: transparent !default;
+// $navbar-light-bg:                   transparent !default;
+// $navbar-light-hover-bg:             rgba(0, 0, 0, .1) !default;
+// $navbar-light-active-bg:            rgba(0, 0, 0, .1) !default;
+// $navbar-light-border-color:         $gray-100 !default;
+// $navbar-light-color:                rgba($black, .5) !default;
+// $navbar-light-hover-color:          rgba($black, .7) !default;
+// $navbar-light-active-color:         rgba($black, .9) !default;
+// $navbar-light-disabled-color:       rgba($black, .3) !default;
+// $navbar-light-toggler-border-color: transparent !default;
 
-$navbar-search-light-border-color:  rgba(0, 0, 0, .6) !default;
-$navbar-search-light-color:          rgba(0, 0, 0, .6) !default;
-$navbar-search-light-focus-border-color: rgba(0, 0, 0, .9) !default;
-$navbar-search-light-focus-color:    rgba(0, 0, 0, .9) !default;
+// $navbar-search-light-border-color:  rgba(0, 0, 0, .6) !default;
+// $navbar-search-light-color:          rgba(0, 0, 0, .6) !default;
+// $navbar-search-light-focus-border-color: rgba(0, 0, 0, .9) !default;
+// $navbar-search-light-focus-color:    rgba(0, 0, 0, .9) !default;
 
 
 
 // Vertical navbar
-$navbar-vertical-box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;
+// $navbar-vertical-box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;
 $navbar-vertical-width: 250px !default;
 $navbar-vertical-padding-x: 1.5rem !default;
 $navbar-vertical-nav-link-padding-x:  1.5rem !default;
@@ -780,8 +746,8 @@ $navbar-icon-min-width: 2.25rem !default;
 $navbar-breadcrumb-padding-y: $nav-link-padding-y !default;
 $navbar-breadcrumb-padding-x: 0 !default;
 
-$navbar-light-bg: $white !default;
-$navbar-light-border-color: $border-color !default;
+// $navbar-light-bg: $white !default;
+// $navbar-light-border-color: $border-color !default;
 
 
 
@@ -834,8 +800,8 @@ $close-font-size:                   $font-size-base * 1.5 !default;
 $close-font-weight:                 $font-weight-bold !default;
 $close-bg:                          transparent !default;
 $close-hover-bg:                    transparent !default;
-$close-color:                       rgba(0, 0, 0, .6) !default !default;
-$close-hover-color:                 rgba(0, 0, 0, .9) !default;
+// $close-color:                       rgba(0, 0, 0, .6) !default !default;
+// $close-hover-color:                 rgba(0, 0, 0, .9) !default;
 $close-text-shadow:                 none !default;
 
 
@@ -845,9 +811,9 @@ $popover-font-size:                 $font-size-sm !default;
 $popover-bg:                        $white !default;
 $popover-max-width:                 276px !default;
 $popover-border-width:              1px !default;
-$popover-border-color:              rgba($black, .05) !default;
+// $popover-border-color:              rgba($black, .05) !default;
 $popover-border-radius:             $border-radius-lg !default;
-$popover-box-shadow:                0px .5rem 2rem 0px rgba($black, .2) !default;
+// $popover-box-shadow:                0px .5rem 2rem 0px rgba($black, .2) !default;
 
 $popover-header-bg:                 $popover-bg !default;
 $popover-header-color:              $headings-color !default;
@@ -916,7 +882,7 @@ $card-spacer-y:                     1.25rem !default;
 $card-spacer-x:                     1.5rem !default;
 $card-border-width:                 $border-width !default;
 $card-border-radius:                $border-radius !default;
-$card-border-color:                 rgba($black, .05) !default;
+// $card-border-color:                 rgba($black, .05) !default;
 $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width}) !default;
 $card-cap-bg:                       $white !default;
 $card-bg:                           $white !default;
@@ -945,7 +911,7 @@ $modal-sm:                          380px !default;
 $modal-title-line-height:           1.1;
 
 $modal-content-bg:                  $white !default;
-$modal-content-border-color:        rgba($black, .2) !default;
+// $modal-content-border-color:        rgba($black, .2) !default;
 $modal-content-border-width:        0 !default;
 $modal-content-border-radius:       $border-radius-lg !default;
 $modal-content-box-shadow-xs:       0 15px 35px rgba(50,50,93,.2), 0 5px 15px rgba(0,0,0,.17);
@@ -980,7 +946,7 @@ $datepicker-active-background: theme-color("primary") !default;
 $datepicker-active-box-shadow:      none !default;
 
 $datepicker-range-background: theme-color("primary") !default;
-$datepicker-range-cell-focused-background: darken($datepicker-range-background, 5%);
+// $datepicker-range-cell-focused-background: darken($datepicker-range-background, 5%);
 $datepicker-range-color: $white !default;
 $datepicker-range-highlighted-bg: $gray-200 !default;
 
