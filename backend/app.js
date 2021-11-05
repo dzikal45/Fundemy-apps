@@ -18,6 +18,13 @@ const corsOptions = {
   optionSuccessStatus: 200,
 }
 
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 
@@ -25,7 +32,8 @@ app.use(express.json());
 app.use("/api/user",userRouter);
 app.use("/api/admin",adminRouter);
 app.use("/api/guru",guruRouter);
-app.use(cors(corsOptions));
+app.use(cors());
+app.options('*', cors());
 
 const PORT = process.env.PORT || 5000;
 
