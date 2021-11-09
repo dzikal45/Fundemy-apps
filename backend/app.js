@@ -12,11 +12,11 @@ const cookieParser = require('cookie-parser');
 var multer = require('multer');
 var upload = multer();
 const firebase = require('./connection/db');
-const corsOptions = {
-  origin: '*',
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-}
+// const corsOptions = {
+//   origin: '*',
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// }
 
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +25,7 @@ app.use(express.json());
 app.use("/api/user",userRouter);
 app.use("/api/admin",adminRouter);
 app.use("/api/guru",guruRouter);
-app.use(cors(corsOptions));
+app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 

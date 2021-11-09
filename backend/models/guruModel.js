@@ -22,11 +22,11 @@ const guruSchema = mongoose.Schema({
         required: true,
         unique: true,
     },
-    course_id:{
+    course_id:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Course',
         sparse: true,
-    },
+    }],
     role:{
         type: String,
         require: true

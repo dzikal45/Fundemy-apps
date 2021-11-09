@@ -17,12 +17,14 @@ const{registerValidation,loginValidation} = require('../../validation');
  exports.authUser = expressAsyncHandler(async(req,res) => {
     
     const { username, password } = req.body;
-    res.send(req.body)
+  
+    // res.send(req.body)
 
-    //const{error} = loginValidation(req.body);
-    //if(error)res.status(400).send(error.details[0].message);
+    const{error} = loginValidation(req.body);
+    if(error)res.status(400).send(error.details[0].message);
 
-    const user = await User.findOne({ username })
+
+    const user = await User.findOne({ username})
     const hashedPassword = Crytpojs.AES.decrypt(
         user.password,
         process.env.SECRET_KEY
@@ -101,6 +103,7 @@ exports.registerUser = expressAsyncHandler(async(req,res) => {
     }
 })
 exports.profileUser = expressAsyncHandler(async(req,res)=>{
+    res.send(req.user)
     const { id} = req.user.id;
     
 

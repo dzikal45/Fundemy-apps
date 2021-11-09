@@ -16,7 +16,7 @@ const subjectSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    course_video:{
+    course_video:[{
         video_name:{
             type: String,
             sparse: true
@@ -25,8 +25,8 @@ const subjectSchema = mongoose.Schema({
             type: String,
             sparse:true
         }
-    },
-    quiz:{
+    }],
+    quiz:[{
         soal:{
             type: String,
             sparse:true
@@ -46,5 +46,5 @@ const subjectSchema = mongoose.Schema({
         statu_lulus:{
             type: bool,
         }
-    }
+    }]
 })

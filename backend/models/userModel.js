@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true,
     },
-    invoice: {
+    pesanan:[{
         invoiceId :{
             type:String,
             
@@ -42,21 +42,16 @@ const userSchema = mongoose.Schema({
             sparse: true,
             default : null
         },
-        payment_method:{
-            type: String,
-            
-            sparse: true,
-            default : null
-        },
+       
         total_payment:{
             type: Number,
         
             sparse: true,
             default : null
-        }
-
-    },
-    course_enrollment:{
+        },
+    }],
+    
+    course_enrollment:[{
         date_enrollment:{
             type: Date,
             
@@ -75,7 +70,7 @@ const userSchema = mongoose.Schema({
             sparse: true,
             default : null
         }
-    },
+    }],
     role:{
         type: String,
         require: true

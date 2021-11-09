@@ -1,8 +1,10 @@
 const expressAsyncHandler = require('express-async-handler');
 const generateToken = require('../../utils/generateToken');
 const admin = require('../../models/adminModel');
+const User = require('../../models/userModel')
 var Crytpojs = require('crypto-js'); 
 const{registerValidation,loginValidation} = require('../../validation');
+const { response } = require('express');
 
 exports.authUser = expressAsyncHandler(async(req,res) => {
     
@@ -111,4 +113,18 @@ exports.profileUser = expressAsyncHandler(async(req,res)=>{
     }
 
 
+})
+exports.getAllUser = expressAsyncHandler(async(req,res)=>{
+   User.find()
+   .then((response)=>{
+       res.json({
+           response,
+       })
+   }).catch((error)=>{
+       res.json({
+           message:error,
+       })
+   });
+
+    res.json(userCollection);
 })

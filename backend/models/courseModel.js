@@ -6,13 +6,15 @@ const { bool, boolean } = require('joi');
 const courseSchema = Mongoose.Schema({
     course_name:{
         type: String,
+        unique: true,
         required: true
     },
     course_description:{
         type: String,
         required: true
     },
-  
+    
+    course_video:[{
         video_name:{
             type: String,
             sparse: true
@@ -21,8 +23,9 @@ const courseSchema = Mongoose.Schema({
             type: String,
             sparse:true
         },
+    }],
     
-    
+    quiz:[{
         soal:{
             type: String,
             sparse:true
@@ -40,6 +43,8 @@ const courseSchema = Mongoose.Schema({
             sparse:true
             
         },
+    }],
+    review:[{
     
    
     
@@ -57,13 +62,13 @@ const courseSchema = Mongoose.Schema({
 
                 default : null
             },
-            user_id:{
+            user_id:[{
                 type: Mongoose.Schema.Types.ObjectId,
                 ref: 'userRegister',
                 sparse: true,
                
-            },
-        
+            }],
+    }]
     
 },
 {
