@@ -7,6 +7,7 @@ import lion from '../component/icons/lion-3 1.png'
 import tupai from '../component/icons/tupai 1.png'
 import testimoni from '../component/icons/testimoni paket.png'
 import Footer from '../component/footer/footer';
+import { NavBtnLink } from '../elements/navbarElement';
 
 const Packagepage = () => {
     return (
@@ -38,7 +39,7 @@ const Packagepage = () => {
                         <h5 style={{color: "#501E65", marginTop: "20px"}}>3 Months</h5>
                         <p>	&#40; 90 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp. 75.000</h2>
-                        <button> Choose Package</button>
+                        <NavBtnLink to="/payment"> Choose Package</NavBtnLink>
                     </Container>
                     </div>
                     

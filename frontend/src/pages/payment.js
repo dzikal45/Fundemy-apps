@@ -67,24 +67,54 @@ const Payment = () => {
         </Modal.Header>
         <Modal.Body>
         <Row>
-                    <Col md={3}>
-                <p className="text11"> Total </p>
-                </Col>
-                <Col md={9}>
-                    <p className="price">Rp. 75.000</p>
-                </Col>
-                </Row>
-                <Row>
+                {/* </Row>
+                <Row> */}
+                
                     <Col md={3}>
                 <p className="text11"> Order ID </p>
                 </Col>
-                <Col md={9}>
+                <Col md={2}>
                     <p className="price">123456</p>
                 </Col>
+                <Col md={2}>
+                </Col>
+                <Col md={2}>
+                <p className="text11"> Total </p>
+                </Col>
+                <Col md={3}>
+                    <p className="price">Rp. 75.000</p>
+                </Col>
                 </Row>
+                <Divider/>
+                <h4> Upload Bukti Pembayaran</h4>
+                <p>Pastikan bukti pembayaran menampilkan:</p>
+                <Row>
+                    <Col md={6}>
+                        <li>Tanggal/Waktu Transfer</li>
+                        <p>contoh: tgl. 04/06/19 / jam 07:24:06</p>
+                    </Col>
+                    <Col md={6}>
+                        <li>Detail Penerima</li>
+                        <p>contoh: Transfer ke Rekening FUNDemy</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={6}>
+                        <li>Status Berhasil</li>
+                        <p>contoh: Transfer BERHASIL, Transaksi Sukses</p>
+                    </Col>
+                    <Col md={6}>
+                        <li>Jumlah Transfer</li>
+                        <p>contoh: Rp. 75.000</p>
+                    </Col>
+                </Row>
+                <div className="upload">
+                <p>Pilih Gambar</p>
+                <input type="file"></input>
+                </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary">Upload Bukti</Button>
+          <NavBtnLink variant="primary" to="/verifypayment">Upload Bukti</NavBtnLink>
         </Modal.Footer>
       </Modal>
                 </div>

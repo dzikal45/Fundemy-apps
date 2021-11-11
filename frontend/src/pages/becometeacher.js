@@ -16,7 +16,6 @@ import axios from 'axios'
 
 
 
-
 const Teacherauth = () => {
 
     let history = useHistory()
