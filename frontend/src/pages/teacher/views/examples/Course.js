@@ -2,7 +2,8 @@ import { useState } from "react";
 import React from "react";
 import { CustomInput, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input } from "reactstrap";
 import Divider from '@mui/material/Divider';
-import { CloseButton } from "react-bootstrap";
+import { CloseButton, Form } from "react-bootstrap";
+import axios from 'axios'
 import {
   Col,
   Badge,
@@ -28,6 +29,8 @@ import Headeradmin from "../../components/Headers/Header.js";
 import ModalUnstyled from '@mui/core/ModalUnstyled';
 import { styled, Box } from '@mui/system';
 import './styling.css'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router';
 
 
 const StyledModal = styled(ModalUnstyled)`
@@ -64,6 +67,19 @@ const style = {
 };
 
 const Course = () => {
+  let history = useHistory()
+  const { register, handleSubmit } = useForm()
+  const handleCourse = (data) => {
+      console.log(data)
+      axios
+          .post("https://backend-fundemy.herokuapp.com/api/guru/course/upload", data)
+          .then(() => {
+              history.push("/teacher")
+          })
+          .catch((error) => {
+              console.log(error)
+          })
+  }
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -96,40 +112,41 @@ const Course = () => {
       <Col md={6}>
     <h2 id="unstyled-modal-title" >Add Course</h2>
     <p> Title</p>
-    <Input
+    <Form.Control
             type="text"
             style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="description"
             variant="outlined"
             label="Description"
             placeholder="Reading Story"
-            fullWidth
+            {...register("title")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
           <div style={{height:"20px"}}></div>
           <p> Description</p>
-    <Input
+    <Form.Control
             type="textarea"
             style={{ width: "100%", height: "15%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="description"
             variant="outlined"
             label="Description"
             placeholder="Deskripsi Course"
-            fullWidth
+            {...register("description")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
           <div style={{height:"20px"}}></div>
                   <p> Video</p>
-    <Input
+    <Form.Control
             type="file"
+            accept="video/mp4,video/x-m4v,video/*"
             style={{ width: "100%", height: "15%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="description"
             variant="outlined"
             label="Description"
             placeholder="Deskripsi Course"
-            fullWidth
+            {...register("video")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
@@ -141,27 +158,27 @@ const Course = () => {
         <Col md={5}>
     <h2 id="unstyled-modal-title" >Add Quiz</h2>
     <p> Question</p>
-    <Input
+    <Form.Control
             type="text"
             style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="question"
             variant="outlined"
             label="Question"
             placeholder="What the color is it?"
-            fullWidth
+            {...register("question")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
           <div style={{height:"20px"}}></div>
           <p> Answer</p>
-    <Input
+    <Form.Control
             type="text"
             style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
             name="answer"
             variant="outlined"
             label="Answer"
             placeholder="Red"
-            fullWidth
+            {...register("answer")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
@@ -170,7 +187,7 @@ const Course = () => {
         </Row>
         <div style={{height:"20px"}}></div>
 
-<button variant="contained" color="black" size="large" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginRight:"20px", borderStyle:"none", backgroundColor:"#A0D4BA", color:"black"}}>
+<button variant="contained" color="black" size="large" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginRight:"20px", borderStyle:"none", backgroundColor:"#A0D4BA", color:"black"}} onClick={handleSubmit(handleCourse)}>
   PUBLISH
 </button>
   </Box>

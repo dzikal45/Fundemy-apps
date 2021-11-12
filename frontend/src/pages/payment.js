@@ -9,15 +9,29 @@ import { NavBtnLink, NavLink } from "../elements/navbarElement"
 import { Divider } from '@material-ui/core';
 import btnpay from "../component/icons/buttonpay.png"
 import logocolor from "../component/icons/logocolor.png";
-
-
-
+import { useHistory } from 'react-router';
+import { useForm } from 'react-hook-form'
+import axios from "axios";
 
 const Payment = () => {
+    let history = useHistory()
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const { register, handleSubmit } = useForm()
+    const handlePayment = (data) => {
+        console.log(data)
+        axios
+            .post("http://localhost:5000/api/user/pembayaran/upload", data)
+            .then(() => {
+                history.push("/verifypayment")
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
     return (
         <>
         

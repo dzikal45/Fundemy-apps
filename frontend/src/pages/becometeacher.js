@@ -23,9 +23,9 @@ const Teacherauth = () => {
     const handleRegis = (data) => {
         console.log(data)
         axios
-            .post("http://localhost:5000/api/guru/register", data)
+            .post("https://backend-fundemy.herokuapp.com/api/guru/register", data)
             .then(() => {
-                history.push("/")
+                history.push("/teacher")
             })
             .catch((error) => {
                 console.log(error)
@@ -35,9 +35,9 @@ const Teacherauth = () => {
     const handleLogin = data => {
         console.log(data)
         axios
-            .post("http://localhost:5000/api/guru/login", data)
+            .post("https://backend-fundemy.herokuapp.com/api/guru/login", data)
             .then(() => {
-                history.push("/")
+                history.push("/teacher")
             })
             .catch((error) => {
                 console.log(error)
@@ -69,7 +69,7 @@ const Teacherauth = () => {
                                 </Form.Group>
                             </Row>
 
-                            <LogBtn type='submit' variant='primary' onSubmit={handleSubmit(handleLogin)}>Login</LogBtn>
+                            <LogBtn type='submit' variant='primary' onClick={handleSubmit(handleLogin)}>Login</LogBtn>
 
                         </Form>
                     </Col>

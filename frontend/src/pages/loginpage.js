@@ -13,7 +13,7 @@ const Loginpage = () => {
     const handleLogin = data => {
         console.log(data)
         axios
-            .post("http://localhost:5000/api/user/login", data)
+            .post("https://backend-fundemy.herokuapp.com/api/user/login", data)
             .then(() => {
                 history.push("/")
             })
