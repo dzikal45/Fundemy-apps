@@ -124,7 +124,7 @@ const Payment = () => {
                 </Row>
                 <div className="upload">
                 <p>Pilih Gambar</p>
-                <input type="file"></input>
+                <input type="file" accept="image/*"></input>
                 </div>
         </Modal.Body>
         <Modal.Footer>
