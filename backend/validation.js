@@ -21,9 +21,32 @@ exports.loginValidation = data =>{
     return  Schema.validate(data);
 }
 
-// exports.addCourseValidation = data =>{
-//     const schema = Joi.object({
+exports.addCourseValidation = data =>{
+    const Schema = Joi.object({
+        course_name:Joi.string().required(),
+        course_description:Joi.string().required(),
+        soal:Joi.string().required(),
+        jawaban_benar:Joi.string().required(),
+        token:Joi.required(),
 
-//     });
-// }
+    });
+    return  Schema.validate(data);
+}
+exports.deleteCourseValidation = data =>{
+    const Schema = Joi.object({
+       Course_id:Joi.required(),
+        token:Joi.required(),
+
+    });
+    return  Schema.validate(data);
+}
+exports.uploadPembayaranValidation = data =>{
+    const Schema = Joi.object({
+       total_payment:Joi.required(),
+        subscribe:Joi.required(),
+        token:Joi.required(),
+
+    });
+    return  Schema.validate(data);
+}
 //validation

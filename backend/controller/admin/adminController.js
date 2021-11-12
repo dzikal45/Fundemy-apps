@@ -115,7 +115,7 @@ exports.profileUser = expressAsyncHandler(async(req,res)=>{
 
 })
 exports.getAllUser = expressAsyncHandler(async(req,res)=>{
-   User.find()
+ const userCollection= await  User.find()
    .then((response)=>{
        res.json({
            response,

@@ -10,9 +10,9 @@ router.get('/',(req,res)=>{
  res.send('online');
 });
 // user router
-router.post('/register',permit('admin'),adminController.registerUser);
-router.post('/login', permit('admin'),adminController.authUser);
-router.post('/getAllUser',permit('admin'), adminController.getAllUser);
+router.post('/register',adminController.registerUser);
+router.post('/login',adminController.authUser);
+router.get('/getAllUser',permit('Admin'), adminController.getAllUser);
 
 module.exports = router;
 // export default UserRouter

@@ -5,6 +5,7 @@ const course = require('../../models/courseModel');
 const db = require('../../connection/db');
 const config = require('../../utils/config');
 const firebase = require('firebase');
+const{addCourseValidation,deleteCourseValidation} = require('../../validation');
 //const {firebase} = require('../../connection/db');  // reference to our db 
 require('firebase/firebase-storage'); // must be required for this to 
 
@@ -17,7 +18,8 @@ module.exports.addCourse = expressAsyncHandler(async(req,res)=>{
     const {course_name,course_description,soal,jawaban_benar} = req.body;
     const username = req.user.username;
 
-
+    const{error} = addCourseValidation(req.body);
+    if(error)res.status(400).send(error.details[0].message);
     if(!req.file) {
         res.status(400).send("Error: No files found")
     }else{
@@ -103,7 +105,7 @@ try{
     // const guru = await Guru.findOne({id});
     // const Course_id = guru.course_id;
     // res.send(Course_id)
-    const Course = await Guru.find({id}).populate('course_id');
+    const Course = await Guru.findById(id).populate('course_id');
     res.status(200).json({Course})
     console.log('retrieved list of course', Course.length, Course[0]);
 }catch(err){
@@ -118,13 +120,13 @@ try{
 })
 
  exports.getCourseByid = expressAsyncHandler(async(req,res)=>{
-     const id = req.params.id;
+     const course_id = req.params.id;
 
      
     //  res.send(req.params );
     try{
         
-        const Course = await course.findOne({id});
+        const Course = await course.findOne({_id:course_id});
         res.status(200).json({Course});
     }catch(err){
         res.status(400);
@@ -133,8 +135,10 @@ try{
  })
 
  exports.updateCourseByid = expressAsyncHandler(async(req,res)=>{
-    const id = req.params.id;
+    const course_id = req.params.id;
     const {course_name,course_description,soal,jawaban_benar} = req.body;
+    const{error} = addCourseValidation(req.body);
+    if(error)res.status(400).send(error.details[0].message);
     if(!req.file) {
         res.status(400).send("Error: No files found")
     }
@@ -174,7 +178,7 @@ try{
                 }
     }
 
-        const Course = await course.findOneAndUpdate({_id:id},CoursePost,{new: true});
+        const Course = await course.findOneAndUpdate({_id:course_id},CoursePost,{new: true});
         res.status(200).json({Course});
     }catch(err){
         res.status(400);
@@ -183,7 +187,9 @@ try{
 })
 
 exports.deleteCourse = expressAsyncHandler(async(req,res)=>{
-    const {id,Course_id} = req.body;
+    const {Course_id} = req.body;
+    const{error} = deleteCourseValidation(req.body);
+    if(error)res.status(400).send(error.details[0].message);
     const guru = await Guru.findOne({Course_id});
 
     const arr = guru.course_id
