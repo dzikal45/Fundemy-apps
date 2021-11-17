@@ -10,6 +10,7 @@ import Footer from '../component/footer/footer';
 import { NavBtnLink } from '../elements/navbarElement';
 
 const Packagepage = () => {
+    let total_payment = 0
     return (
         <>
         <Navbar />
@@ -52,7 +53,7 @@ const Packagepage = () => {
                         <h5 style={{color: "#501E65", marginTop: "20px"}}>6 Months</h5>
                         <p>	&#40; 180 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp. 144.000</h2>
-                        <button onClick> Choose Package</button>
+                        <button onClick={total_payment=144000}> Choose Package</button>
                     </Container>
                     </div>
                     
@@ -65,7 +66,7 @@ const Packagepage = () => {
                         <h5 style={{color: "#501E65", marginTop: "20px"}}>1 Year</h5>
                         <p>	&#40; 365 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp.228.000</h2>
-                        <button> Choose Package</button>
+                        <button onClick={total_payment=228000} > Choose Package</button>
                     </Container>
                     </div>
                     

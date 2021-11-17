@@ -12,7 +12,7 @@ const Registerpage = () => {
     const handleRegis = (data) => {
         console.log(data)
         axios
-            .post("http://localhost:5000/api/user/register", data)
+            .post("https://backend-fundemy.herokuapp.com/api/user/register", data)
             .then(() => {
                 history.push("/")
             })
