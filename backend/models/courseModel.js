@@ -1,7 +1,7 @@
 // import { ObjectId } from "bson";
 // import { Mongoose } from "mongoose";
 const Mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+
 const { bool, boolean } = require('joi');
 const courseSchema = Mongoose.Schema({
     course_name:{

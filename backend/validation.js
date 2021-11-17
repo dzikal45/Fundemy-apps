@@ -11,6 +11,14 @@ exports.registerValidation = data => {
   return  Schema.validate(data);
 
 };
+exports.enrollCourse = data =>{
+    const Schema =Joi.object({
+        course_id:Joi.required(),
+        token:Joi.required(),
+    
+    });
+    return  Schema.validate(data);
+}
 
 exports.loginValidation = data =>{
     const Schema =Joi.object({

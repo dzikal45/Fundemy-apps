@@ -1,6 +1,6 @@
 // import bcrypt from 'bcryptjs'
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+
 const { ObjectId } = require('bson');
 const { string } = require('joi');
 const guruSchema = mongoose.Schema({
@@ -36,8 +36,5 @@ const guruSchema = mongoose.Schema({
 {
     timestamps: true
 });
-guruSchema.methods.matchPassword = async function(enteredPassword){
-    return await bcrypt.compare(enteredPassword, this.password)
-};
 
 module.exports = mongoose.model('Guru',guruSchema);

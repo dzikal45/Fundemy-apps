@@ -128,3 +128,61 @@ exports.getAllUser = expressAsyncHandler(async(req,res)=>{
 
     res.json(userCollection);
 })
+
+exports.getPembayaran = expressAsyncHandler(async(req,res)=>{
+    const user = await User.find();
+    const arr = user;
+    
+//  res.send(arr[1].pesanan)
+    const pembayaran = [];
+    for(i=0;i<arr.length;i++){
+        for(j=0;j<arr[i].pesanan.length;j++){
+            if(arr[i].pesanan[j].invoice_status=="pending" ){
+              
+                pembayaran.push(arr[i]);
+            }
+
+        }
+
+        
+        // console.log(pembayaran)
+    }
+    res.status(200).json(pembayaran)  
+})
+exports.editPembayaran = expressAsyncHandler(async(req,res)=>{
+    const {user_id,invoice_status,invoiceId} = req.body;
+
+    const user = await User.findById(user_id);
+    var d = new Date(Date.now());
+    
+    
+    const arr = user.pesanan
+    
+    
+    
+    const result = arr.find(function(element){
+        return element.invoiceId == invoiceId 
+    })
+    var date ;
+    if(result.subcribe == "3 month"){
+        date == d.setMonth(d.getMonth() + 3);
+    }else if(result.subcribe == "6 month"){
+        date == d.setMonth(d.getMonth()+6 );
+    }else if(result.subscribe == "1 year"){
+        date == d.setMonth(d.getMonth() + 12);
+    }
+    
+    result.invoice_status = invoice_status;
+    const active = await User.findOneAndUpdate({_id:user_id},{activeBefore:date},{new: true})
+     await user.save();
+
+    res.status(201).json(result.invoice_status);
+
+
+
+
+
+
+
+    // const pembayaran
+})

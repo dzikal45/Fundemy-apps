@@ -6,13 +6,14 @@ const expressAsyncHandler = require('express-async-handler');
 const generateToken = require('../../utils/generateToken');
 const User = require('../../models/userModel');
 const course = require('../../models/courseModel')
-const bcrypt = require('bcryptjs');
+
 var Crytpojs = require('crypto-js'); 
-const{registerValidation,loginValidation,deleteCourseValidation} = require('../../validation');
+const{registerValidation,loginValidation,deleteCourseValidation,enrollCourse} = require('../../validation');
 const uuid = require('uuid');
 const db = require('../../connection/db');
 const firebase = require('firebase');
-const { ObjectId } = require('bson');
+const e = require('express');
+
 require('firebase/firebase-storage'); // must be required for this to 
 
 const storage = firebase.storage().ref();
@@ -249,7 +250,7 @@ exports.getPembayaranById = expressAsyncHandler(async(req,res)=>{
 exports.enrollCourse = expressAsyncHandler(async(req,res)=>{
     const user_id = req.user.id;
     const Course_id = req.body.course_id;
-    const{error} = loginValidation(req.body);
+    const{error} = enrollCourse(req.body);
     if(error)res.status(400).send(error.details[0].message);
     try{
 
@@ -262,6 +263,7 @@ exports.enrollCourse = expressAsyncHandler(async(req,res)=>{
         
         const newCourse = {
             date_enrollment: Date.now(),
+        
             course_name:Course.course_name
         }
         // res.send(Course)
@@ -292,5 +294,67 @@ exports.getCourseEnroll = expressAsyncHandler(async(req,res)=>{
         res.status(400);
         throw new Error(err);
     }
+})
+
+exports.checkActive = expressAsyncHandler(async(req,res)=>{
+    const user_id = req.user.id;
+
+    const user = await User.findById(user_id);
+
+    const now = Date.now();
+
+    if(user.activeBefore >= now && user.activeBefore != null){
+        res.status(200).json({
+            succes: true,
+            message: "user is active"
+        })
+    }else{
+        res.status(400);
+        throw new Error('user not active');
+    }
+
+})
+
+exports.getAllCourse = expressAsyncHandler(async(req,res)=>{
+    const Course = await course.find();
+    if(Course){
+        res.status(200).json(Course);
+    }else{
+        res.status(400);
+        throw new Error('there is no course available');
+    }
+})
+
+exports.checkAnswer = expressAsyncHandler(async(req,res)=>{
+    const user_id = req.user.id;
+    const {course_id,jawaban,course_name} = req.body;
+    const user = await User.findById(user_id);
+    const arr = user.course_enrollment;
+    const result = arr.find(function(element){
+        return element.course_name == course_name;
+    })
+    const Course = await course.findById(course_id);
+
+
+    if(jawaban == Course.quiz[0].jawaban_benar){
+        Course.quiz[0].score = 100;
+        Course.quiz[0].status_lulus = true;
+        result.date_of_completion = Date.now();
+        await user.save();
+
+        await Course.save();
+        res.status(200).json({
+            succes:true,
+            message:"selamat anda telah lulus",
+            status:Course.quiz[0].status_lulus
+        })
+
+    }else{
+        res.status(400);
+        throw new Error('anda belum lulus');
+    }
+
+
+
 })
 // module.exports = [registerUser,authUser];

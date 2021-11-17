@@ -1,8 +1,6 @@
-// import Mongoose  from "mongoose"
-// import bcrypt from 'bcryptjs'
+
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const { ObjectId } = require('bson');
+
 const { string } = require('joi');
 const userSchema = mongoose.Schema({
     name: {
@@ -65,7 +63,8 @@ const userSchema = mongoose.Schema({
     }],
     activeBefore:{
         type:Date,
-        sparse:true
+        sparse:true,
+        default:null,
     },
     
     course_enrollment:[{
@@ -79,6 +78,7 @@ const userSchema = mongoose.Schema({
             type: Date,
         
             sparse: true,
+            default:null,
             
         },
         course_name:{
@@ -105,9 +105,6 @@ const userSchema = mongoose.Schema({
 
 
 
-userSchema.methods.matchPassword = async function(enteredPassword){
-    return await bcrypt.compare(enteredPassword, this.password)
-};
 
 module.exports = mongoose.model('userRegister',userSchema);
 

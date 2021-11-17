@@ -13,6 +13,8 @@ router.get('/',(req,res)=>{
 router.post('/register',adminController.registerUser);
 router.post('/login',adminController.authUser);
 router.get('/getAllUser',permit('Admin'), adminController.getAllUser);
+router.get('/getPembayaran',permit('Admin'), adminController.getPembayaran);
+router.post('/editPembayaran',permit('Admin'), adminController.editPembayaran);
 
 module.exports = router;
 // export default UserRouter
