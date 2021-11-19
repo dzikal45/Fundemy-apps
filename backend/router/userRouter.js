@@ -27,6 +27,7 @@ router.post('/login', userController.authUser);
 router.post('/enrollment',permit('siswa'), userController.enrollCourse);
 router.patch('/pembayaran/upload',upload.single("file"),permit('siswa'), userController.uploadPembayaran);
 router.patch('/checkAnswer',permit('siswa'), userController.checkAnswer);
+router.patch('/editUser',permit('siswa'), userController.editProfile);
 router.get('/profile/:username',permit('siswa'),userController.profileUser);
 router.get('/getPembayaran/pending',permit('siswa'),userController.getPembayaranPending);
 router.get('/getPembayaran',permit('siswa'),userController.getPembayaran);

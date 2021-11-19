@@ -139,6 +139,24 @@ exports.profileUser = expressAsyncHandler(async(req,res)=>{
 
 })
 
+exports.editProfile = expressAsyncHandler(async(req,res)=>{
+    const user_id = req.user.id;
+    const {date_birth,phone,grade,name}= req.body;
+    const data = {name:name,date_birth: date_birth,phone: phone,grades: grade}
+    const user = await User.findByIdAndUpdate(user_id,data,  { new: true });
+
+    if(user){
+        res.status(201).json({
+            succes:true,
+            message:'edit success',
+            data:user
+        })
+    }
+    else{
+        res.status(400);
+        throw new Error(`edit failed`)
+    }
+})
 
 
 exports.uploadPembayaran = expressAsyncHandler(async(req,res)=>{

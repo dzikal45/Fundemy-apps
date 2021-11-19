@@ -16,12 +16,24 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    
     username: {
         type: String,
         required: true,
         unique: true,
     },
-    
+    date_birth: {
+        type: String,
+        default:null,
+    },
+    phone: {
+        type: String,
+        default:null,
+    },
+    grades: {
+        type: String,
+        default:null,
+    },
     pesanan:[{
         invoiceId :{
             type:String,
