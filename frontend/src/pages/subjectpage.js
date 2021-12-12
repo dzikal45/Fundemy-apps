@@ -6,9 +6,13 @@ import alphabet from "../component/icons/alphabet.png";
 import number from "../component/icons/number.png";
 import color from "../component/icons/color.png";
 import { NavLink } from "../elements/navbarElement"
+import { useHistory } from 'react-router';
+import swal from "sweetalert";
+import Cookies from "js-cookie";
 
 
 const Subjectpage = () => {
+  const loged = Cookies.get("token")
     return (
         <>
         <Navbar />

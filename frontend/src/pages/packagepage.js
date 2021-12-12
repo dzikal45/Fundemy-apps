@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Col, Row, Container } from "react-bootstrap";
+import { useHistory } from "react-router";
+import { Col, Row, Container, Button } from "react-bootstrap";
 import Navbar from "../component/navbar/navbarputih";
 import './packagepage.css'
 import bear from '../component/icons/bearrr 1.png'
@@ -8,9 +9,35 @@ import tupai from '../component/icons/tupai 1.png'
 import testimoni from '../component/icons/testimoni paket.png'
 import Footer from '../component/footer/footer';
 import { NavBtnLink } from '../elements/navbarElement';
+import Cookies from "js-cookie";
 
 const Packagepage = () => {
-    let total_payment = 0
+    const history = useHistory()
+    const [ selectPaket1, setSelectPaket1 ] = useState(75_000)
+    const [ selectPaket2, setSelectPaket2 ] = useState(144_000)
+    const [ selectPaket3, setSelectPaket3 ] = useState(228_000)
+
+    const total_payment = Cookies.get("total_payment")
+
+    const actionClick1 = () => {
+        Cookies.set("total_payment", 75000)
+        Cookies.set("subscription", '3 Months')
+        history.push('/payment')
+    }
+
+    const actionClick2 = () => {
+        Cookies.set("total_payment", 144000)
+        Cookies.set("subscription", '6 Months')
+        history.push('/payment')
+    }
+    const actionClick3 = () => {
+        Cookies.set("total_payment", 228000)
+        Cookies.set("subscription", '1 Year')
+        history.push('/payment')
+    }
+
+    
+
     return (
         <>
         <Navbar />
@@ -20,13 +47,13 @@ const Packagepage = () => {
         <div className="boxpur" style={{marginTop:"75px"}}>
             <Row>
                 <Col md={3} xs={12}>
-                    
+                    <img src={bear} style={{opacity: 0}}/>
                     <div className="cardfree">
                     <Container style={{padding:"7%"}}>
-                        <h1 style={{color: "#501E65", marginTop: "20px"}}>FREE TRIAL</h1>
+                        <h5 style={{color: "#501E65", marginTop: "20px"}}>FREE TRIAL</h5>
                         <p>Try it free</p>
                         <h2 style={{margin: "40px"}}>FREE</h2>
-                        <button
+                        <button 
                         > Choose Package</button>
                     </Container>
                     </div>
@@ -40,7 +67,7 @@ const Packagepage = () => {
                         <h5 style={{color: "#501E65", marginTop: "20px"}}>3 Months</h5>
                         <p>	&#40; 90 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp. 75.000</h2>
-                        <NavBtnLink to="/payment"> Choose Package</NavBtnLink>
+                        <button onClick={actionClick1} > Choose Package</button>
                     </Container>
                     </div>
                     
@@ -53,7 +80,7 @@ const Packagepage = () => {
                         <h5 style={{color: "#501E65", marginTop: "20px"}}>6 Months</h5>
                         <p>	&#40; 180 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp. 144.000</h2>
-                        <button onClick={total_payment=144000}> Choose Package</button>
+                        <button onClick={actionClick2}> Choose Package</button>
                     </Container>
                     </div>
                     
@@ -66,7 +93,7 @@ const Packagepage = () => {
                         <h5 style={{color: "#501E65", marginTop: "20px"}}>1 Year</h5>
                         <p>	&#40; 365 days 	&#41;</p>
                         <h2 style={{margin: "40px"}}>Rp.228.000</h2>
-                        <button onClick={total_payment=228000} > Choose Package</button>
+                        <button onClick={actionClick3}> Choose Package</button>
                     </Container>
                     </div>
                     

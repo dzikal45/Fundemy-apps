@@ -14,12 +14,13 @@ import Index from '../src/pages/admin/views/Index';
 import Teacherauth from '../src/pages/becometeacher'
 import EditProfile from './pages/editprofile';
 import Payment from './pages/payment';
+import LoginTeacher from './pages/loginteacher'
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../src/pages/admin/assets/scss/argon-dashboard-react.scss"
-
 import AdminLayout from "./pages/admin/layouts/Admin.js";
 import TeacherLayout from "./pages/teacher/layouts/Teacher.js";
 import Verifypayment from './pages/Verifypayment';
+import LoginAdmin from './pages/loginAdmin';
 
 function App() {
   return (
@@ -39,9 +40,12 @@ function App() {
        <Route path="/teacher" render={(props) => <TeacherLayout {...props} />} />
        <Redirect from="/teacher" to="/teacher/index" />
         <Route path ="/teacherauth" exact component={Teacherauth} />
+        <Route path ="/loginteacher" exact component={LoginTeacher} />
         <Route path ="/editprofile" exact component={EditProfile} />
         <Route path ="/payment" exact component={Payment} />
         <Route path ="/verifypayment" exact component={Verifypayment} />
+        <Route path="/loginadmin" exact component={LoginAdmin} />
+        
 
         
       </Switch> 

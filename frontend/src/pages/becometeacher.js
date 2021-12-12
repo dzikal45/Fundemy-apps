@@ -32,18 +32,6 @@ const Teacherauth = () => {
             })
     }
 
-    const handleLogin = data => {
-        console.log(data)
-        axios
-            .post("https://backend-fundemy.herokuapp.com/api/guru/login", data)
-            .then(() => {
-                history.push("/teacher")
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-
     return (
        
         <>
@@ -52,27 +40,6 @@ const Teacherauth = () => {
         </div>
         <Container>
           <Row>
-          <Col md={6} className="justify-content-md-center">
-                        <h1 style={{color:'#89559F', marginTop:"80px", marginLeft:"-15px"}}>Login</h1>
-                        <Form>
-                            <Row>
-                                <Form.Group controlId='username'>
-                                    <h6 style={{color:'#501E65'}}>Username</h6>
-                                    <Form.Control style={{paddingRight:"220px"}} placeholder='learnwithfun' {...register("username")}></Form.Control>
-                                </Form.Group>
-                            </Row>
-
-                            <Row>
-                                <Form.Group controlId='password'>
-                                    <h6 style={{color:'#501E65'}}>Password</h6>
-                                    <Form.Control style={{paddingRight:"220px", marginBottom:"40px"}} type='password' placeholder='********' {...register("password")}></Form.Control>
-                                </Form.Group>
-                            </Row>
-
-                            <LogBtn type='submit' variant='primary' onClick={handleSubmit(handleLogin)}>Login</LogBtn>
-
-                        </Form>
-                    </Col>
             <Col md={6} className="justify-content-md-center">
             <h1 style={{color:'#89559F', marginTop:"80px", marginLeft:"-15px"}}>Sign Up</h1>
                 <Form>
@@ -103,6 +70,10 @@ const Teacherauth = () => {
                     </Row>
 
                     <RegBtn  type='submit' variant='primary' onClick={handleSubmit(handleRegis)}>Create Account</RegBtn>
+
+                    <Row>
+                        Already have an account? &nbsp;<NavLink to ="/loginteacher" >Login</NavLink>
+                    </Row>
                 </Form>
                     </Col>
                    

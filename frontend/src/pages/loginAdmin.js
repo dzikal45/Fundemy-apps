@@ -1,52 +1,61 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import Navbar from "../component/navbar/navbar";
+import './becometeacher.css'
 import { Col, Row, Container, Button, Form } from "react-bootstrap";
 import { NavLink as Link } from "react-router-dom";
-import { LogBtn, NavLink } from "../elements/loginElement"
+import { LogBtn, NavLink, RegBtn } from "../elements/loginElement"
 import gambar from '../component/icons/login image2.png'
+import gambar2 from '../component/icons/login image.png'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router'
 import axios from 'axios'
 import Cookies from "js-cookie";
 import swal from "sweetalert";
+// import Navbar from "../component/navbar/navbarputih"
 
-const Loginpage = () => {
+
+
+
+
+const LoginAdmin = () => {
+
     let history = useHistory()
     const { register, handleSubmit } = useForm()
     const handleLogin = data => {
         console.log(data)
         axios
-            .post("https://backend-fundemy.herokuapp.com/api/user/login", data)
+            .post("https://backend-fundemy.herokuapp.com/api/admin/login", data)
             .then((response) => {
-                console.log(response)
                 swal({
                     title: "Login Berhasil",
                     icon: "success",
                 })
+                Cookies.set("name", response.data.name)
                 Cookies.set("token", response.data.token);
-                history.push("/")
+                history.push("/admin")
             })
-            .catch((error) => {
+            .catch((err) => {
                 swal({
                     title: "Username atau Password salah",
                     text: "Harap input username atau password dengan benar !",
                     icon: "error",
                     button: "Ok !",
                   });
-                console.log(error)
+                if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
             })
     }
 
     return (
-                <Row>
-                    <Col>
-                        <img src={gambar} width="640" alt="logo" />
-                    </Col>
-
-                    <Col className="justify-content-md-center">
-                        <h1 style={{color:'#89559F', marginTop:"80px", marginLeft:"-15px"}}>Welcome Back,</h1>
-                        <h1 style={{color:'#FABD2E', marginLeft:"-15px", marginTop:"-10px", marginBottom:"15px"}}>FunBuddies!</h1>
-                        <h6 style={{color:'#606060', marginLeft:"-15px", marginBottom:"50px"}}>Sign up to continue</h6>
-
+       
+        <>
+        <Navbar />
+        <div className="headerteacher">
+        </div>
+        <Container>
+          <Row>
+          <Col md={6} className="justify-content-md-center">
+                        <h1 style={{color:'#89559F', marginTop:"80px", marginLeft:"-15px"}}>Login</h1>
                         <Form>
                             <Row>
                                 <Form.Group controlId='username'>
@@ -63,14 +72,17 @@ const Loginpage = () => {
                             </Row>
 
                             <LogBtn type='submit' variant='primary' onClick={handleSubmit(handleLogin)}>Login</LogBtn>
-                            
-                            <Row>
-                                Don't have an account? &nbsp;<NavLink to ="/register" >Sign up</NavLink>
-                            </Row>
+
                         </Form>
                     </Col>
-                </Row>
+            </Row>      
+        </Container>
+
+    </>
+
+        
+       
     )
 }
 
-export default Loginpage
+export default LoginAdmin

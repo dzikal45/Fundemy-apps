@@ -12,24 +12,44 @@ import logocolor from "../component/icons/logocolor.png";
 import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form'
 import axios from "axios";
+import Cookies from "js-cookie";
+import swal from "sweetalert";
 
 const Payment = () => {
     let history = useHistory()
     const [show, setShow] = useState(false);
 
+    const { register, handleSubmit } = useForm()
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const { register, handleSubmit } = useForm()
+    let harga = Cookies.get("total_payment")
+    let durasi = Cookies.get("subscription")
+
     const handlePayment = (data) => {
-        console.log(data)
+        const formData = new FormData()
+        formData.append("total_payment", Cookies.get("total_payment"))
+        formData.append("token", Cookies.get("token"))
+        formData.append("subscribe", Cookies.get("subscription"))
+        formData.append('file', data.file[0])
+
+        console.log(formData)
         axios
-            .post("http://localhost:5000/api/user/pembayaran/upload", data)
+            .patch("https://backend-fundemy.herokuapp.com/api/user/pembayaran/upload", formData)
             .then(() => {
                 history.push("/verifypayment")
+                Cookies.remove("total_payment")
+                Cookies.remove("subscription")
             })
             .catch((error) => {
                 console.log(error)
+                swal({
+                    title: "Bukti transfer belum terunggah",
+                    text: "Silakan unggah kembali bukti transfer anda!",
+                    icon: "error",
+                    button: "OK",
+                  })
             })
     }
     return (
@@ -43,10 +63,10 @@ const Payment = () => {
                 <Divider></Divider>
                 <Row>
                     <Col md={8}>
-                <p className="text11"> 3 Months Subscribing </p>
+                <p className="text11"> {durasi} Subscribing </p>
                 </Col>
                 <Col md={4}>
-                    <p className="price">Rp. 75.000</p>
+                    <p className="price">{harga}</p>
                 </Col>
                 </Row>
                 <Divider></Divider>
@@ -55,7 +75,7 @@ const Payment = () => {
                 <p className="total"> Total</p>
                 </Col>
                 <Col md={4}>
-                    <p className="price" style={{fontWeight:"bold"}}>Rp. 75.000</p>
+                    <p className="price" style={{fontWeight:"bold"}}>{harga}</p>
                 </Col>
                 </Row>
                 
@@ -96,7 +116,7 @@ const Payment = () => {
                 <p className="text11"> Total </p>
                 </Col>
                 <Col md={3}>
-                    <p className="price">Rp. 75.000</p>
+                    <p font-size="0.875em" className="price">{harga}</p>
                 </Col>
                 </Row>
                 <Divider/>
@@ -124,11 +144,11 @@ const Payment = () => {
                 </Row>
                 <div className="upload">
                 <p>Pilih Gambar</p>
-                <input type="file" accept="image/*"></input>
+                <input type="file" accept="image/*" {...register('file')}></input>
                 </div>
         </Modal.Body>
         <Modal.Footer>
-          <NavBtnLink variant="primary" to="/verifypayment">Upload Bukti</NavBtnLink>
+          <button  onClick={handleSubmit(handlePayment)} >Upload Bukti</button>
         </Modal.Footer>
       </Modal>
                 </div>

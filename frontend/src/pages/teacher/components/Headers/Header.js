@@ -1,18 +1,20 @@
-
+import React, { useState, useEffect } from "react";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 import teacher from '../../assets/img/teacher.png'
 import course from '../../assets/img/course.png'
 import student from '../../assets/img/student.png'
 import "./header.css"
+import Cookies from "js-cookie";
 
 
 const Headeradmin = () => {
+  const teacherInfo = Cookies.get("name")
   return (
       <div className="header pb-8 pt-5">
         <Container fluid>
           <div className="header-body">
             {/* Card stats */}
-            <p className="hello"> Hi FUNHero, Welcome Back! </p>
+            <p className="hello"> Hi {teacherInfo}, Welcome Back! </p>
             <Row>
               <Col lg="6" xl="6">
               <div className="cardteacher">

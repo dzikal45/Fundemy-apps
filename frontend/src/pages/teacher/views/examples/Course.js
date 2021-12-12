@@ -31,6 +31,8 @@ import { styled, Box } from '@mui/system';
 import './styling.css'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router';
+import Cookies from "js-cookie";
+import swal from "sweetalert";
 
 
 const StyledModal = styled(ModalUnstyled)`
@@ -69,20 +71,59 @@ const style = {
 const Course = () => {
   let history = useHistory()
   const { register, handleSubmit } = useForm()
+
   const handleCourse = (data) => {
-      console.log(data)
-      axios
-          .post("https://backend-fundemy.herokuapp.com/api/guru/course/upload", data)
-          .then(() => {
-              history.push("/teacher")
-          })
-          .catch((error) => {
-              console.log(error)
-          })
+    const formData = new FormData()
+    formData.append('token', Cookies.get('token'))
+    formData.append('file', data.file[0])
+    formData.append('course_description', data.course_description)
+    formData.append('course_name', data.course_name)
+    formData.append('soal', data.soal)
+    formData.append('jawaban_benar', data.jawaban_benar)
+    console.log(formData)
+    axios
+        .post("https://backend-fundemy.herokuapp.com/api/guru/course/upload", formData)
+        .then((response) => {
+            swal({
+                title: "Course Berhasil Diupload",
+                text: "Terima kasih telah berkontribusi di Fundemy!",
+                icon: "success",
+            })
+            history.push("/teacher")
+        })
+        .catch((err) => {
+            if(err.response.status === 400){
+              swal({
+                title: "Terjadi kesalahan",
+                text: "Silakan input kembali data anda!",
+                icon: "error",
+                button: "OK",
+              })
+            }
+            if(err.response.status === 401){
+              swal({
+                title: "Session anda telah habis!",
+                text: "Silakan login kembali",
+                icon: "error",
+                button: "OK",
+              })
+              history.push('/loginteacher')
+            }
+            if(err.response.status === 403){
+              swal({
+                title: "Anda tidak memiliki akses!",
+                text: "Hanya guru dan admin yang dapat menambahkan course",
+                icon: "error",
+                button: "OK",
+              })
+            }
+            if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
+        })
   }
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   return (
     <>
       <Headeradmin />
@@ -115,11 +156,11 @@ const Course = () => {
     <Form.Control
             type="text"
             style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
-            name="description"
+            name="course_name"
             variant="outlined"
             label="Description"
             placeholder="Reading Story"
-            {...register("title")}
+            {...register("course_name")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
@@ -128,11 +169,11 @@ const Course = () => {
     <Form.Control
             type="textarea"
             style={{ width: "100%", height: "15%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
-            name="description"
+            name="course_description"
             variant="outlined"
             label="Description"
             placeholder="Deskripsi Course"
-            {...register("description")}
+            {...register("course_description")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
@@ -142,11 +183,12 @@ const Course = () => {
             type="file"
             accept="video/mp4,video/x-m4v,video/*"
             style={{ width: "100%", height: "15%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
-            name="description"
+            name="file"
             variant="outlined"
             label="Description"
             placeholder="Deskripsi Course"
-            {...register("video")}
+            directory =""
+            {...register("file")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
@@ -161,11 +203,11 @@ const Course = () => {
     <Form.Control
             type="text"
             style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
-            name="question"
+            name="soal"
             variant="outlined"
             label="Question"
             placeholder="What the color is it?"
-            {...register("question")}
+            {...register("soal")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
@@ -174,11 +216,11 @@ const Course = () => {
     <Form.Control
             type="text"
             style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
-            name="answer"
+            name="jawaban_benar"
             variant="outlined"
             label="Answer"
             placeholder="Red"
-            {...register("answer")}
+            {...register("jawaban_benar")}
             // value={postData.description}
             // onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
