@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Container, Button, Form, Modal, CloseButton } from "react-bootstrap";
-import Navbar from "../component/navbar/navbarputih";
+import Navbar from "../component/navbar/navbarpayment";
 import './payment.css'
 import alphabet from "../component/icons/alphabet.png";
 import number from "../component/icons/number.png";
@@ -68,7 +68,7 @@ const Payment = () => {
         // backdrop="static"
         keyboard={false}
         style={{
-            marginTop:"120px"
+            marginTop:"80px"
         }}
       >
         <Modal.Header>

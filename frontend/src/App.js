@@ -20,6 +20,7 @@ import "../src/pages/admin/assets/scss/argon-dashboard-react.scss"
 import AdminLayout from "./pages/admin/layouts/Admin.js";
 import TeacherLayout from "./pages/teacher/layouts/Teacher.js";
 import Verifypayment from './pages/Verifypayment';
+import Quiz from './pages/quiz';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path ="/editprofile" exact component={EditProfile} />
         <Route path ="/payment" exact component={Payment} />
         <Route path ="/verifypayment" exact component={Verifypayment} />
+        <Route path ="/quiz" exact component={Quiz} />
 
         
       </Switch> 

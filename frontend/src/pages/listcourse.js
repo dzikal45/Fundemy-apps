@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Row, Container } from "react-bootstrap";
-import Navbar from "../component/navbar/navbarputih";
+import Navbar from "../component/navbar/navbarputihuser";
 import './subjectpage.css'
 import alphabet from "../component/icons/alphabet.png";
 import number from "../component/icons/number.png";
@@ -8,7 +8,7 @@ import color from "../component/icons/color.png";
 import { NavLink } from "../elements/navbarElement"
 import CardExample from '../component/card/cardlist';
 import Cardlist from '../component/card/cardlist';
-
+import Footer from '../component/footer/footer'
 
 const Listcourse = () => {
     return (
@@ -34,6 +34,8 @@ const Listcourse = () => {
         </Col></Row>
         </Container>
         </div>
+        
+        <Footer />
         </>
     )
 }

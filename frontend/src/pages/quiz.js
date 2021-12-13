@@ -1,5 +1,4 @@
-import React from 'react'
-import { Col, Row, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import Navbar from "../component/navbar/navbarputihuser";
 import './detailpage.css'
 import alphabet from "../component/icons/alphabet.png";
@@ -17,7 +16,7 @@ import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
 import fotomas from '../component/icons/fotomasmas.png'
-import { CustomInput, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input } from "reactstrap";
+import { Col, Row, Container, Button, Form, Modal, CloseButton } from "react-bootstrap";
 import Footer from '../component/footer/footer'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -25,6 +24,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import abc from "../component/icons/abc.jpg"
+import { NavBtnLink } from "../elements/navbarElement"
+import { Divider } from '@material-ui/core';
+import logocolor from "../component/icons/logocolor.png";
+
+import { useHistory } from 'react-router';
+
+
 
 const labels = {
   0.5: '0.5',
@@ -42,8 +48,14 @@ const labels = {
 
 
 
-const Detailpage = () => {
+const Quiz = () => {
     const value = 4;
+    let history = useHistory()
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
 
@@ -56,69 +68,35 @@ const Detailpage = () => {
     <div style={{height:"40px"}}></div>
     <Row>
         <Col md={9} fluid>
-        <h1 className="headtext1">A B C</h1>
-        <Box
-      sx={{
-        // justifyContent:'center',
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      <Rating
-        name="text-feedback"
-        value={value}
-        readOnly
-        precision={0.5}
-        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-      />
-      <Box sx={{ ml: 2 }}>{labels[value]} (2 Rating)</Box>
-      <div style={{height:"50px"}}></div>
+        <h1 className="headtext1">Quiz Time!</h1>
+        <h4 >from ABC Course</h4>
+        <div style={{height:"50px"}}></div>
+        <p style={{fontSize:"30px"}}> Huruf Alphabet Ke-3 adalah ...</p>
+        <div style={{height:"50px"}}></div>
+        <button onClick={handleShow} style={{width:"15%", padding:"10px", borderRadius:"10px", borderStyle:"none", color:"black", fontWeight:"bold"}}>Show Answer</button>
+        <Modal
+        show={show}
+        onHide={handleClose}
+        // backdrop="static"
+        keyboard={false}
+        style={{
+            marginTop:"80px"
+        }}
+      >
+        <Modal.Header>
+            
+            <img src={logocolor} style={{width:"25%"}}></img>
+            <div style={{width:"50px"}}>
+            <CloseButton/>
+            </div>
+        </Modal.Header>
+        <Modal.Body>
+<p> Answer: </p>
+   <p style={{fontWeight:"bold", fontSize:"25px"}}> C </p>
+        </Modal.Body>
+      </Modal>
 
-    </Box>
 
-    <div className='player-wrapper'>
-        <ReactPlayer
-          className='react-player'
-          url='https://www.youtube.com/watch?v=_UR-l3QI2nE'
-          width='100%'
-          height='100%'
-    
-        />
-        
-      </div>
-	
-      <div style={{height:"50px"}}></div>
-
-	<div class="tabs">
-		<div class="tabby-tab">
-			<Input type="radio" id="tab-1" name="tabby-tabs" checked/>
-			<label for="tab-1">Overview</label>
-			<div class="tabby-content">
-				<p style={{fontSize:"20px", fontWeight:"bold"}}>Course Description</p>
-        <p>Pada course ini akan mempelajari dan mengenal huruf A, B, dan C.</p>
-			</div>
-		</div>
-
-		<div class="tabby-tab">
-			<Input type="radio" id="tab-2" name="tabby-tabs"/>
-			<label for="tab-2">Teacher</label>
-			<div class="tabby-content">
-				<img src={fotomas} style={{height:"400px"}}/>
-        <p style={{fontSize:"20px", fontWeight:"bold"}}>Sutrisno</p>
-        <p style={{fontSize:"15px", fontWeight:"bold", color:"#89559F"}}>Guru Bahasa di Olif Kindergarten</p>
-        <p>Halo!! Nama saya Sutrisno tetapi biasa dipanggil Ka Nono. Disini saya akan mengenalkan apa itu alphabet A, B, dan C.</p>
-
-			</div>
-		</div>
-
-		<div class="tabby-tab">
-			<Input type="radio" id="tab-3" name="tabby-tabs"/>
-			<label for="tab-3">Reviews</label>
-			<div class="tabby-content">
-onprogress			</div>
-		</div>
-		
-	</div>
 
       </Col>
       <Col md={3}>
@@ -223,4 +201,4 @@ onprogress			</div>
     )
 }
 
-export default Detailpage
+export default Quiz

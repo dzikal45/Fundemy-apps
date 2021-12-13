@@ -6,6 +6,7 @@ import alphabet from "../component/icons/alphabet.png";
 import number from "../component/icons/number.png";
 import color from "../component/icons/color.png";
 import { NavLink } from "../elements/navbarElement"
+import Footer from '../component/footer/footer';
 
 
 const Subjectpage = () => {
@@ -56,6 +57,7 @@ const Subjectpage = () => {
         </Container>
         
         </div>
+        <Footer/>
         </>
     )
 }

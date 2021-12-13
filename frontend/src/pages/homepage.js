@@ -80,19 +80,19 @@ const Homepage = () => {
         <Col sm={3}>
             <img src={oneicon} height="72px"/>
             </Col>
-        <Col sm={9}><h5>Pembelajaran yang terukur</h5>
+        <Col sm={9}><h2>Pembelajaran yang terukur</h2>
         <p>Di setiap module terdapat mini-quiz untuk mengukur pemahaman anak terhadap materi.</p></Col>
         </Row>
 
         <Row>
         <Col sm={3}><img src={twoicon} height="72px"/></Col>
-        <Col sm={9}><h5>Pembelajaran yang mudah</h5>
+        <Col sm={9}><h2>Pembelajaran yang mudah</h2>
         <p>Dapat belajar darimana saja dan kapan saja dengan materi yang telah disesuaikan dengan kurikulum yang berlaku</p></Col>
         </Row>
    
         <Row>
         <Col sm={3}><img src={threeicon} height="72px"/></Col>
-        <Col sm={9}><h5>Pembelajaran yang seru</h5>
+        <Col sm={9}><h2>Pembelajaran yang seru</h2>
         <p>Dengan materi belajar yang beragam mulai dari gambar, video, dan audio.</p></Col>
         </Row>
 
@@ -101,7 +101,7 @@ const Homepage = () => {
         </Container>
 
         <div className="quote" style={{backgroundImage:`url(${backgreen})`, height:"242px" }}>
-        <p style={{width: "957px",height: "120px", marginTop:"55px"}}>We help you raise kids who are confident and prepared for school</p>
+        <p style={{width: "957px",height: "120px", marginTop:"55px", fontSize:"40px", fontWeight:"bold"}}>We help you raise kids who are confident and prepared for school</p>
         </div>
 
         <div className="subject">

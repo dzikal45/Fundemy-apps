@@ -25,7 +25,7 @@ const Loginpage = () => {
     return (
                 <Row>
                     <Col>
-                        <img src={gambar} width="640" alt="logo" />
+                        <img src={gambar} height="85%" alt="logo" />
                     </Col>
 
                     <Col className="justify-content-md-center">
