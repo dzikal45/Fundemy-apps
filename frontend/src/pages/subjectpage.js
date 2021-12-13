@@ -6,10 +6,17 @@ import alphabet from "../component/icons/alphabet.png";
 import number from "../component/icons/number.png";
 import color from "../component/icons/color.png";
 import { NavLink } from "../elements/navbarElement"
+<<<<<<< HEAD
 import Footer from '../component/footer/footer';
+=======
+import { useHistory } from 'react-router';
+import swal from "sweetalert";
+import Cookies from "js-cookie";
+>>>>>>> 4ada655f4475d1cf3e66efc9e1fc51f6680880da
 
 
 const Subjectpage = () => {
+  const loged = Cookies.get("token")
     return (
         <>
         <Navbar />

@@ -2,6 +2,7 @@ import Index from "../admin/views/Index";
 import Student from "./views/examples/Student.js";
 import Teacher from "../admin/views/examples/Teacher.js";
 import Course from "../admin/views/examples/Course";
+import Invoice from "../admin/views/examples/Invoice"
 var routes = [
   {
     path: "/index",
@@ -30,6 +31,13 @@ var routes = [
     name: "Course",
     icon: "ni ni-single-copy-04 text-green",
     component: Course,
+    layout: "/admin",
+  },
+  {
+    path: "/invoice",
+    name: "Invoice",
+    icon: "ni ni-single-copy-04 text-green",
+    component: Invoice,
     layout: "/admin",
   },
 ];

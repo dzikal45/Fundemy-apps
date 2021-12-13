@@ -20,16 +20,21 @@ import {
 } from "reactstrap";
 import "./navbar.css"
 import logo from "../../assets/img/logofunfun.png"
-import { useHistory } from "react-router-dom";
-
+import Cookies from "js-cookie";
+import { useHistory } from "react-router";
+import swal from "sweetalert"
 
 const AdminNavbar = (props) => {
   let history = useHistory();
 
-  function handleLogOut() {
-    sessionStorage.setItem("userToken", '');
-    sessionStorage.clear();
-    history.push("/"); // whichever component you want it to route to
+  const logOut = () => {
+    swal({
+      title: "Log out berhasil",
+      icon: "success"
+    })
+    Cookies.remove("token")
+    Cookies.remove("name")
+    history.push("/")
   }
 
  
@@ -74,7 +79,7 @@ const AdminNavbar = (props) => {
 
                 <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
                   <i className="ni ni-user-run" />
-                  <button onClick={handleLogOut} style={{borderStyle:"none", background:"none", textAlign:"left"}}>Logout</button>
+                  <button onClick={logOut} style={{borderStyle:"none", background:"none", textAlign:"left"}}>Logout</button>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

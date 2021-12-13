@@ -5,6 +5,7 @@ import { NavLink, RegBtn } from '../elements/loginElement'
 import gambar from '../component/icons/login image.png'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router';
+import swal from "sweetalert";
 
 const Registerpage = () => {
     let history = useHistory()
@@ -14,9 +15,20 @@ const Registerpage = () => {
         axios
             .post("https://backend-fundemy.herokuapp.com/api/user/register", data)
             .then(() => {
-                history.push("/")
+                swal({
+                    title: "Register Berhasil",
+                    text: "Harap login untuk mulai menggunakan aplikasi Fundemy",
+                    icon: "success",
+                  });
+                history.push("/login")
             })
             .catch((error) => {
+                swal({
+                    title: "Harap isi semua data",
+                    text: "Email atau Username telah digunakan!",
+                    icon: "error",
+                    button: "Ok !",
+                  });
                 console.log(error)
             })
     }

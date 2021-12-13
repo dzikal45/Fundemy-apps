@@ -26,7 +26,7 @@ const Verifypayment = () => {
         <div className="boxverif">
         <img src={Pay} width="375px"></img>
         <p className="headerpay1">Terima Kasih, FUNBuddies!</p>
-        <p className="bodypay1">Saat ini status subscriptionmu sedang menunggu proses pembayaran.</p>
+        <p className="bodypay1">Saat ini status subscriptionmu akan segera diproses oleh Admin.</p>
         <NavBtnLink variant="primary" to="/">Back to Home</NavBtnLink>
         </div>
 
