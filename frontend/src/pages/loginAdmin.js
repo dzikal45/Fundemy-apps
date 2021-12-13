@@ -38,7 +38,7 @@ const LoginAdmin = () => {
             .catch((err) => {
                 swal({
                     title: "Username atau Password salah",
-                    text: "Harap input username atau password dengan benar !",
+                    text: `${err.response.data}`,
                     icon: "error",
                     button: "Ok !",
                   });

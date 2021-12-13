@@ -23,6 +23,7 @@ const Loginpage = () => {
                     icon: "success",
                 })
                 Cookies.set("token", response.data.token);
+                Cookies.set("username", response.data.username)
                 history.push("/")
             })
             .catch((error) => {

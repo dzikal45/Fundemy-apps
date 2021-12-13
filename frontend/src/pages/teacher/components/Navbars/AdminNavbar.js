@@ -63,7 +63,7 @@ const TeacherNavbar = (props) => {
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold" style={{color:"black"}}>
-                      FUNHero
+                      {Cookies.get("name")}
                       <i class="fas fa-caret-down" style={{marginLeft:"10px"}}></i>
                     </span>
                   </Media>

@@ -61,6 +61,7 @@ const Header = () => {
       icon: "success"
     })
     Cookies.remove("token")
+    Cookies.remove("username")
     history.push("/")
   }
 
