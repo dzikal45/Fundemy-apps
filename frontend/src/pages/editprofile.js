@@ -12,40 +12,65 @@ import axios from 'axios'
 
 const EditProfile = () => {
     const [ profile, setProfile ] = useState([])
+    const [ pembayaran, setPembayaran ] = useState([])
 
     const params = new URLSearchParams([['token', Cookies.get('token')]])
     const username = Cookies.get('username')
 
-    console.log(`https://backend-fundemy.herokuapp.com/user/profile/${username}`)
-
     useEffect(() => {
+        let isSubscribed = true
         axios
-        .get(`https://backend-fundemy.herokuapp.com/user/profile/${username}`, {params})
+        .get(`https://backend-fundemy.herokuapp.com/api/user/profile/${username}`, {params})
         .then((res) => {
-          setProfile(res.data.response)
-          console.log(profile)
+          if(isSubscribed){
+            setProfile(res.data)
+          }
         })
         .catch((err) => {
           if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response) }
         })
+
+        return() => isSubscribed = false
       })
+    
+    useEffect(() => {
+        let isSubscribed = true
+        axios
+        .get(`https://backend-fundemy.herokuapp.com/api/user/getPembayaran/`, {params})
+        .then((res) => {
+          if(isSubscribed){
+            setPembayaran(res.data[0])
+          }
+        })
+        .catch((err) => {
+          if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response) }
+        })
+
+        return() => isSubscribed = false
+    })
+    
     return (
         <>
-        
-        <table style={{margin:'auto'}}>
-            <tr>Nama
-                <td>Daniel</td>
-            </tr>
-            <tr>Username
-                <td>Username Daniel</td>
-            </tr>
-
-            <tr>Email
-                <td></td>
-            </tr>
-        </table>
-       
-
+            <Table>
+                <thead>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Invoice ID</th>
+                    <th>Invoice Status</th>
+                    <th>Subscription Status</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{profile.name}</td>
+                        <td>{profile.email}</td>
+                        <td>{profile.username}</td>
+                        <td>{pembayaran.invoiceId}</td>
+                        <td>{pembayaran.invoice_status}</td>
+                        <td>{ pembayaran.invoice_status === "accept" ? pembayaran.subscribe : "Free user"}</td>
+                    </tr>
+                </tbody>
+            </Table>
         </>
     )
 }

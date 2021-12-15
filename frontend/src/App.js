@@ -21,19 +21,22 @@ import AdminLayout from "./pages/admin/layouts/Admin.js";
 import TeacherLayout from "./pages/teacher/layouts/Teacher.js";
 import Verifypayment from './pages/Verifypayment';
 import LoginAdmin from './pages/loginAdmin';
+import Cookies from "js-cookie";
 
 function App() {
+  const loged = Cookies.get("token")
+  
   return (
     <Router>
       {/* <Navbar /> */}
       <Switch>
         <Route path ="/" exact component={Homepage} />
         <Route path ="/register" exact component={Registerpage} />
-        <Route path ="/login" exact component={Loginpage} />
+        <Route path ="/login" exact component={ loged ? Homepage : Loginpage} />
         <Route path ="/paket" exact component={Packagepage} />
-        <Route path ="/subject" exact component={Subjectpage} />
-        <Route path ="/listcourse" exact component={Listcourse} />
-        <Route path ="/detailpage" exact component={Detailpage} />
+        <Route path ="/subject" exact component={ loged ? Subjectpage : Homepage } />
+        <Route path ="/listcourse" exact component={ loged ? Listcourse : Homepage} />
+        <Route path ="/detailpage" exact component={ loged ? Detailpage : Homepage} />
         {/* <Route path ="/admin" exact component={Index} /> */}
         <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
        <Redirect from="/admin" to="/admin/index" />
@@ -42,8 +45,8 @@ function App() {
         <Route path ="/teacherauth" exact component={Teacherauth} />
         <Route path ="/loginteacher" exact component={LoginTeacher} />
         <Route path ="/editprofile" exact component={EditProfile} />
-        <Route path ="/payment" exact component={Payment} />
-        <Route path ="/verifypayment" exact component={Verifypayment} />
+        <Route path ="/payment" exact component={ loged ? Payment : Homepage} />
+        <Route path ="/verifypayment" exact component={loged ? Verifypayment : Homepage} />
         <Route path="/loginadmin" exact component={LoginAdmin} />
         
 

@@ -23,50 +23,40 @@ import {
 import Headeradmin from "../../components/Headers/Header.js";
 import Cookies from "js-cookie";
 import swal from "sweetalert";
+import { useForm } from 'react-hook-form'
 
 const Tables = () => {
     const [ invoice, setInvoice ] = useState([])
     const params = new URLSearchParams([['token', Cookies.get('token')]])
 
-    //const { register, handleSubmit } = useForm()
-
     useEffect(() => {
+        let isSubscribed = true
         axios
         .get('https://backend-fundemy.herokuapp.com/api/admin/getPembayaran', {params})
         .then((res) => {
-          setInvoice(res.data)
-          //console.log(invoice)
+            if(isSubscribed){
+                setInvoice(res.data)
+            }
         })
-      })
+        return () => isSubscribed = false
+
+      }, [])
 
     //console.log(invoice[Cookies.get('angka')].username)
 
     const selectAngka = e => {
-        Cookies.set("angka", e.currentTarget.value)
+       Cookies.set("angka", e.currentTarget.value)
+       handleAccept()
     }
 
     const handleAccept = () => {
         const data = {}
-        /*data.push('token', Cookies.get('token'))
-        data.push('userId', invoice[Cookies.get('angka')]._id)
-        data.push('invoice_status', 'accept')
-        data.push('invoiceId', invoice[Cookies.get('angka')].pesanan[0].invoiceId)*/
-
         data['token'] = Cookies.get('token')
         data['userId'] = invoice[Cookies.get('angka')]._id
         data['invoice_status'] = 'accept'
         data['invoiceId'] = invoice[Cookies.get('angka')].pesanan[0].invoiceId
 
-        /*onst data = {
-                'token': Cookies.get('token'),
-                'userId': invoice[Cookies.get('angka')]._id,
-                'invoice_status': 'accept',
-                'invoiceId': invoice[Cookies.get('angka')].pesanan[0].invoiceId,
-            }*/
         console.log(data)
-
-        //const jsoned = JSON.parse(data)
-        //console.log(jsoned)
 
         axios
          .post("https://backend-fundemy.herokuapp.com/api/admin/editPembayaran", data)
@@ -77,7 +67,6 @@ const Tables = () => {
                 icon: "success",
                 button: "Ok",
              })
-             Cookies.remove("angka")
          })
          .catch((err) => {
             if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }

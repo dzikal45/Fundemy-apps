@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { CustomInput, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input } from "reactstrap";
 import Divider from '@mui/material/Divider';
@@ -71,8 +71,24 @@ const style = {
 const Course = () => {
   let history = useHistory()
   const { register, handleSubmit } = useForm()
+  const [ course, setCourse ] = useState([])
+
+  useEffect(() => {
+    let isSubscribed = true
+    const params = new URLSearchParams([['token', Cookies.get('token')]])
+    axios
+    .get('https://backend-fundemy.herokuapp.com/api/guru/getCourse', {params})
+    .then((res) => {
+        if(isSubscribed){
+            setCourse(res.data.Course.course_id)
+        }
+    })
+    return () => isSubscribed = false
+
+  }, [])
 
   const handleCourse = (data) => {
+    console.log(data)
     const formData = new FormData()
     formData.append('token', Cookies.get('token'))
     formData.append('file', data.file[0])
@@ -120,9 +136,81 @@ const Course = () => {
             if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
         })
   }
+
+  const selectAngka = e => {
+    Cookies.set("angka", e.currentTarget.value)
+    handleDeleteCourse()
+ }
+
+ const selectAngkaUpdate = e => {
+   Cookies.set("angkaUpdate", e.currentTarget.value)
+   setOpenUpdate(true)
+   //handleUpdateCourse()
+ }
+
+  const handleDeleteCourse = () => {
+    /*const data = {}
+    data['token'] = Cookies.get("token")
+    data['Course_id'] = course[Cookies.get("angka")]._id
+    console.log(data)*/
+
+    axios
+      .delete("https://backend-fundemy.herokuapp.com/api/guru/course/delete", { 
+        data : {
+          token: Cookies.get("token"),
+          Course_id: course[Cookies.get("angka")]._id,
+        }
+      })
+      .then(()=> {
+        Cookies.remove("angka")
+        swal({
+          title: "Course Berhasil Didelete",
+          text: "Terima kasih telah berkontribusi di Fundemy!",
+          icon: "success",
+       })
+        history.push("/teacher")
+      })
+      .catch((err) => {
+        if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
+      })
+  }
+
+  const handleUpdateCourse = (data) => {
+    const formData = new FormData()
+    //console.log(course[data.index]._id)
+    console.log(course[Cookies.get("angkaUpdate")]._id)
+    formData.append('token', Cookies.get('token'))
+    formData.append('file', data.file[0])
+    formData.append('course_description', data.course_description)
+    formData.append('course_name', data.course_name)
+    formData.append('soal', data.soal)
+    formData.append('jawaban_benar', data.jawaban_benar)
+    console.log(...formData)
+
+    axios
+     .patch(`https://backend-fundemy.herokuapp.com/api/guru/course/update/${course[Cookies.get("angkaUpdate")]._id}`, formData)
+     .then(()=> {
+       Cookies.remove("angkaUpdate")
+       swal({
+        title: "Course Berhasil Diupdate",
+        text: "Terima kasih telah berkontribusi di Fundemy!",
+        icon: "success",
+        })
+       history.push("/teacher")
+     })
+     .catch((err) => {
+      if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
+     })
+    
+  }
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [ openUpdate, setOpenUpdate ] = useState(false)
+  //const handleOpenUpdate = () => setOpenUpdate(true)
+  const handleCloseUpdate = () => setOpenUpdate(false)
 
   return (
     <>
@@ -234,367 +322,150 @@ const Course = () => {
 </button>
   </Box>
 </StyledModal>
+
             <Card className="shadow">
               <CardHeader className="border-0">
                 <h3 className="mb-0">Course</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
-                  <tr>
+                <tr>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Video</th>
-                    <th scope="col">Teacher</th>
                     <th scope="col">Date</th>
                     <th scope="col" />
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">
-    
-                          <span className="mb-0 text-sm">
-                            Coloring
-                          </span>
-                    </th>
-                    <td>Course ini mempelajari mengenai warna-warna dasar.</td>
-                    <td>
-                      www.youtube.com/abjUGu87B
+                  {
+                    course.map((e, index)=>{
+                      return(
+                        <tr>
+                          <td>{e.course_name}</td>
+                          <td>{e.course_description}</td>
+                          <td>{e.course_video[0].video_file}</td>
+                          <td>{e.updatedAt}</td>
+                          <td>
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                className="btn-icon-only text-light"
+                                href="#pablo"
+                                role="button"
+                                size="sm"
+                                color=""
+                                onClick={(e) => e.preventDefault()}
+                              >
+                                <i className="fas fa-ellipsis-v" />
+                              </DropdownToggle>
+                              <DropdownMenu className="dropdown-menu-arrow" right>
+                                <DropdownItem
+                                  value={index}
+                                  onClick={selectAngka}
+                                >
+                                  Delete
+                                </DropdownItem>
+                                <DropdownItem
+                                  value={index}
+                                  onClick={selectAngkaUpdate}
+                                >
+                                Update
+                                </DropdownItem>
+                              
+                              </DropdownMenu>
+                          </UncontrolledDropdown>
                     </td>
-                    <td>
-                      <div className="avatar-group">
-                        <a
-                          className="avatar avatar-sm"
-                          href="#pablo"
-                          id="tooltip996637554"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            className="rounded-circle"
-                            src={
-                              require("../../assets/img/theme/team-4-800x800.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip996637554"
-                        >
-                          Jessica Doe
-                        </UncontrolledTooltip>
-                      </div>
-                    </td>
-                    <td>
-                     25 April 2000
-                    </td>
-                    <td className="text-right">
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          className="btn-icon-only text-light"
-                          href="#pablo"
-                          role="button"
-                          size="sm"
-                          color=""
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fas fa-ellipsis-v" />
-                        </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Delete
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                           Update
-                          </DropdownItem>
-                         
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-    
-                          <span className="mb-0 text-sm">
-                            Coloring
-                          </span>
-                    </th>
-                    <td>Course ini mempelajari mengenai warna-warna dasar.</td>
-                    <td>
-                      www.youtube.com/abjUGu87B
-                    </td>
-                    <td>
-                      <div className="avatar-group">
-                        <a
-                          className="avatar avatar-sm"
-                          href="#pablo"
-                          id="tooltip996637554"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            className="rounded-circle"
-                            src={
-                              require("../../assets/img/theme/team-4-800x800.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip996637554"
-                        >
-                          Jessica Doe
-                        </UncontrolledTooltip>
-                      </div>
-                    </td>
-                    <td>
-                     25 April 2000
-                    </td>
-                    <td className="text-right">
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          className="btn-icon-only text-light"
-                          href="#pablo"
-                          role="button"
-                          size="sm"
-                          color=""
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fas fa-ellipsis-v" />
-                        </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Delete
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                           Update
-                          </DropdownItem>
-                         
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-    
-                          <span className="mb-0 text-sm">
-                            Coloring
-                          </span>
-                    </th>
-                    <td>Course ini mempelajari mengenai warna-warna dasar.</td>
-                    <td>
-                      www.youtube.com/abjUGu87B
-                    </td>
-                    <td>
-                      <div className="avatar-group">
-                        <a
-                          className="avatar avatar-sm"
-                          href="#pablo"
-                          id="tooltip996637554"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            className="rounded-circle"
-                            src={
-                              require("../../assets/img/theme/team-4-800x800.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip996637554"
-                        >
-                          Jessica Doe
-                        </UncontrolledTooltip>
-                      </div>
-                    </td>
-                    <td>
-                     25 April 2000
-                    </td>
-                    <td className="text-right">
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          className="btn-icon-only text-light"
-                          href="#pablo"
-                          role="button"
-                          size="sm"
-                          color=""
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fas fa-ellipsis-v" />
-                        </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Delete
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                           Update
-                          </DropdownItem>
-                         
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-    
-                          <span className="mb-0 text-sm">
-                            Coloring
-                          </span>
-                    </th>
-                    <td>Course ini mempelajari mengenai warna-warna dasar.</td>
-                    <td>
-                      www.youtube.com/abjUGu87B
-                    </td>
-                    <td>
-                      <div className="avatar-group">
-                        <a
-                          className="avatar avatar-sm"
-                          href="#pablo"
-                          id="tooltip996637554"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            className="rounded-circle"
-                            src={
-                              require("../../assets/img/theme/team-4-800x800.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip996637554"
-                        >
-                          Jessica Doe
-                        </UncontrolledTooltip>
-                      </div>
-                    </td>
-                    <td>
-                     25 April 2000
-                    </td>
-                    <td className="text-right">
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          className="btn-icon-only text-light"
-                          href="#pablo"
-                          role="button"
-                          size="sm"
-                          color=""
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fas fa-ellipsis-v" />
-                        </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Delete
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                           Update
-                          </DropdownItem>
-                         
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-    
-                          <span className="mb-0 text-sm">
-                            Coloring
-                          </span>
-                    </th>
-                    <td>Course ini mempelajari mengenai warna-warna dasar.</td>
-                    <td>
-                      www.youtube.com/abjUGu87B
-                    </td>
-                    <td>
-                      <div className="avatar-group">
-                        <a
-                          className="avatar avatar-sm"
-                          href="#pablo"
-                          id="tooltip996637554"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            className="rounded-circle"
-                            src={
-                              require("../../assets/img/theme/team-4-800x800.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <UncontrolledTooltip
-                          delay={0}
-                          target="tooltip996637554"
-                        >
-                          Jessica Doe
-                        </UncontrolledTooltip>
-                      </div>
-                    </td>
-                    <td>
-                     25 April 2000
-                    </td>
-                    <td className="text-right">
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          className="btn-icon-only text-light"
-                          href="#pablo"
-                          role="button"
-                          size="sm"
-                          color=""
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fas fa-ellipsis-v" />
-                        </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Delete
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                           Update
-                          </DropdownItem>
-                         
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </td>
-                  </tr>
+                    <StyledModal
+  aria-labelledby="unstyled-modal-title"
+  aria-describedby="unstyled-modal-description"
+  open={openUpdate}
+  onClose={handleCloseUpdate}
+  BackdropComponent={Backdrop} >
+    <Box sx={style}>
+  <div style={{float:"right"}}>
+    <button onClick={handleClose} style={{float:"right", backgroundColor:"white", borderStyle:"none"}}>
+  <CloseButton/>  </button>
+
+  </div>
+  <Row>
+      <Col md={6}>
+    <h2 id="unstyled-modal-title" >Add Course</h2>
+    <p> Title</p>
+    <Form.Control
+            type="text"
+            style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            name="course_name"
+            variant="outlined"
+            label="Description"
+            placeholder="Reading Story"
+            {...register("course_name")}
+          />
+          <div style={{height:"20px"}}></div>
+          <p> Description</p>
+    <Form.Control
+            type="textarea"
+            style={{ width: "100%", height: "15%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            name="course_description"
+            variant="outlined"
+            label="Description"
+            placeholder="Deskripsi Course"
+            {...register("course_description")}
+          />
+          <div style={{height:"20px"}}></div>
+                  <p> Video</p>
+    <Form.Control
+            type="file"
+            accept="video/mp4,video/x-m4v,video/*"
+            style={{ width: "100%", height: "15%", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            name="file"
+            variant="outlined"
+            label="Description"
+            placeholder="Deskripsi Course"
+            directory =""
+            {...register("file")}
+          />
+
+        </Col>
+        <Col md={1}>
+        <Divider orientation="vertical" variant="middle"  />
+        </Col>
+        <Col md={5}>
+    <h2 id="unstyled-modal-title" >Add Quiz</h2>
+    <p> Question</p>
+    <Form.Control
+            type="text"
+            style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            name="soal"
+            variant="outlined"
+            label="Question"
+            placeholder="What the color is it?"
+            {...register("soal")}
+          />
+          <div style={{height:"20px"}}></div>
+          <p> Answer</p>
+    <Form.Control
+            type="text"
+            style={{ width: "100%", height: "10%", color:"black", background: "#FFFFFF", border: "1.5px solid #686A71", boxSizing: "border-box", borderRadius: "7.34848px", fontSize: "15px", padding: "10px", overflow: "scroll"}}
+            name="jawaban_benar"
+            variant="outlined"
+            label="Answer"
+            placeholder="Red"
+          />
+          <div style={{height:"20px"}}></div>
+        </Col>
+        </Row>
+        <div style={{height:"20px"}}></div>
+        <input type="hidden" value={index} {...register("index")} />
+
+<button variant="contained" color="black" size="large" type="submit" style={{borderRadius:"10px", paddingLeft:"15px",paddingRight:"15px", paddingTop:"5px", paddingBottom:"5px", marginRight:"20px", borderStyle:"none", backgroundColor:"#A0D4BA", color:"black"}} onClick={handleSubmit(handleUpdateCourse)}>
+  UPDATE COURSE
+</button>
+  </Box>
+  </StyledModal>
+                        </tr>  
+                      )
+                    })
+                  }
                 </tbody>
               </Table>
               <CardFooter className="py-4">
@@ -653,6 +524,8 @@ const Course = () => {
           </div>
         </Row>
       </Container>
+
+ 
     </>
   );
 };
