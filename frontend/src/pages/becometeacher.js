@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
 import axios from 'axios'
 // import Navbar from "../component/navbar/navbarputih"
+import swal from "sweetalert"
 
 
 
@@ -25,7 +26,12 @@ const Teacherauth = () => {
         axios
             .post("https://backend-fundemy.herokuapp.com/api/guru/register", data)
             .then(() => {
-                history.push("/teacher")
+                swal({
+                    title: "Register Berhasil",
+                    text: "Harap login untuk mulai menggunakan aplikasi Fundemy",
+                    icon: "success",
+                  });
+                history.push("/loginteacher")
             })
             .catch((error) => {
                 console.log(error)

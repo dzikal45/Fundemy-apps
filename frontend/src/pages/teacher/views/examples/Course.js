@@ -96,7 +96,7 @@ const Course = () => {
     formData.append('course_name', data.course_name)
     formData.append('soal', data.soal)
     formData.append('jawaban_benar', data.jawaban_benar)
-    console.log(formData)
+    console.log(...formData)
     axios
         .post("https://backend-fundemy.herokuapp.com/api/guru/course/upload", formData)
         .then((response) => {
@@ -149,10 +149,6 @@ const Course = () => {
  }
 
   const handleDeleteCourse = () => {
-    /*const data = {}
-    data['token'] = Cookies.get("token")
-    data['Course_id'] = course[Cookies.get("angka")]._id
-    console.log(data)*/
 
     axios
       .delete("https://backend-fundemy.herokuapp.com/api/guru/course/delete", { 
@@ -171,6 +167,15 @@ const Course = () => {
         history.push("/teacher")
       })
       .catch((err) => {
+        if(err.response.status === 401){
+          swal({
+            title: "Session anda telah habis!",
+            text: "Silakan login kembali",
+            icon: "error",
+            button: "OK",
+          })
+          history.push('/loginteacher')
+        }
         if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
       })
   }
@@ -199,6 +204,15 @@ const Course = () => {
        history.push("/teacher")
      })
      .catch((err) => {
+      if(err.response.status === 401){
+        swal({
+          title: "Session anda telah habis!",
+          text: "Silakan login kembali",
+          icon: "error",
+          button: "OK",
+        })
+        history.push('/loginteacher')
+      }
       if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
      })
     

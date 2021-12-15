@@ -21,10 +21,14 @@ import {
 } from "reactstrap";
 // core components
 import Headeradmin from "../../components/Headers/Header.js";
+import { useHistory } from 'react-router';
 import Cookies from "js-cookie";
+import swal from "sweetalert";
 
 const Tables = () => {
   const [ students, setStudents ] = useState([])
+
+  let history = useHistory()
 
   const params = new URLSearchParams([['token', Cookies.get('token')]])
 
@@ -38,14 +42,47 @@ const Tables = () => {
         if(isSubscribed){
           setStudents(res.data.response)
         }
+        //setStudents(res.data.response)
       //console.log(students)
     })
-    .catch((err) => {
-      if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response) }
-    })
-
     return() => isSubscribed = false
-  })
+  }, [])
+
+  const selectAngkaDelete = e => {
+    Cookies.set("angkaDelete", e.currentTarget.value)
+    handleDeleteStudent()
+  } 
+
+  const handleDeleteStudent = () => {
+
+    axios
+      .delete("https://backend-fundemy.herokuapp.com/api/admin/deleteUser", { 
+        data : {
+          token: Cookies.get("token"),
+          user_id: students[Cookies.get("angkaDelete")]._id,
+        }
+      })
+      .then(()=> {
+        Cookies.remove("angkaDelete")
+        swal({
+          title: "Siswa Berhasil Didelete",
+          icon: "success",
+       })
+        history.push("/admin")
+      })
+      .catch((err) => {
+        if(err.response.status === 401){
+          swal({
+            title: "Session anda telah habis!",
+            text: "Silakan login kembali",
+            icon: "error",
+            button: "OK",
+          })
+          history.push('/loginadmin')
+        }
+        if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
+      })
+  }
 
   return (
     <>
@@ -84,16 +121,10 @@ const Tables = () => {
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
                           <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
+                            value={index}
+                            onClick={selectAngkaDelete}
                           >
                             Delete
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                           Update
                           </DropdownItem>
                          
                         </DropdownMenu>
