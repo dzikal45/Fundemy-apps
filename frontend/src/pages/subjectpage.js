@@ -1,18 +1,15 @@
 import React from 'react'
 import { Col, Row, Container } from "react-bootstrap";
-import Navbar from "../component/navbar/navbarputih";
+import Navbar from "../component/navbar/navbar";
 import './subjectpage.css'
 import alphabet from "../component/icons/alphabet.png";
 import number from "../component/icons/number.png";
 import color from "../component/icons/color.png";
 import { NavLink } from "../elements/navbarElement"
-<<<<<<< HEAD
-import Footer from '../component/footer/footer';
-=======
 import { useHistory } from 'react-router';
 import swal from "sweetalert";
 import Cookies from "js-cookie";
->>>>>>> 4ada655f4475d1cf3e66efc9e1fc51f6680880da
+import Footer from "../component/footer/footer"
 
 
 const Subjectpage = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router";
 import { Col, Row, Container, Button } from "react-bootstrap";
-import Navbar from "../component/navbar/navbarputih";
+import Navbar from "../component/navbar/navbar";
 import './packagepage.css'
 import bear from '../component/icons/bearrr 1.png'
 import lion from '../component/icons/lion-3 1.png'

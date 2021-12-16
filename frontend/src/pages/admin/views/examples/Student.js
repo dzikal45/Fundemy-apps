@@ -31,16 +31,22 @@ const Tables = () => {
   const studentsPerPage = 10
 
   useEffect(() => {
+    let isSubscribed = true
     axios
     .get('https://backend-fundemy.herokuapp.com/api/admin/getAllUser', {params})
     .then((res) => {
-      setStudents(res.data.response)
+        if(isSubscribed){
+          setStudents(res.data.response)
+        }
       //console.log(students)
     })
     .catch((err) => {
       if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response) }
     })
+
+    return() => isSubscribed = false
   })
+
   return (
     <>
       <Headeradmin />
@@ -53,11 +59,13 @@ const Tables = () => {
             <th>Email</th>
             <th>User Action</th>
           </tr>
+        </thead>
+        <tbody>
           {
             students.map((e, index) => {
             return(
               <tr>
-                <th>{index+1}</th>
+                <td>{index+1}</td>
                 <td>{e.name}</td>
                 <td>{e.username}</td>
                 <td>{e.email}</td>
@@ -94,8 +102,7 @@ const Tables = () => {
               </tr>
             )
           })}
-          
-        </thead>
+          </tbody>
       </Table>
     </>
   );
