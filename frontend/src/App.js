@@ -47,9 +47,7 @@ function App() {
         <Route path ="/editprofile" exact component={EditProfile} />
         <Route path ="/payment" exact component={ loged ? Payment : Homepage} />
         <Route path ="/verifypayment" exact component={loged ? Verifypayment : Homepage} />
-        <Route path="/loginadmin" exact component={LoginAdmin} />
-        
-
+        <Route path="/loginadmin" exact component={LoginAdmin} />  
         
       </Switch> 
     </Router>

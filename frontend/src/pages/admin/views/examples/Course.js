@@ -96,9 +96,8 @@ const Course = () => {
     formData.append('course_name', data.course_name)
     formData.append('soal', data.soal)
     formData.append('jawaban_benar', data.jawaban_benar)
-    console.log(formData)
     axios
-        .post("https://backend-fundemy.herokuapp.com/api/guru/course/upload", formData)
+        .post("https://backend-fundemy.herokuapp.com/api/admin/addCourse", formData)
         .then((response) => {
             swal({
                 title: "Course Berhasil Diupload",
@@ -135,6 +134,42 @@ const Course = () => {
             }
             if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
         })
+  }
+
+  const selectAngkaDelete = e => {
+    Cookies.set("angkaDelete", e.currentTarget.value)
+    handleDeleteCourse()
+  } 
+
+  const handleDeleteCourse = () => {
+
+    axios
+      .delete("https://backend-fundemy.herokuapp.com/api/guru/admin/deleteCourse", { 
+        data : {
+          token: Cookies.get("token"),
+          Course_id: course[Cookies.get("angkaDelete")]._id,
+        }
+      })
+      .then(()=> {
+        Cookies.remove("angkaDelete")
+        swal({
+          title: "Course Berhasil Didelete",
+          icon: "success",
+       })
+        history.push("/admin")
+      })
+      .catch((err) => {
+        if(err.response.status === 401){
+          swal({
+            title: "Session anda telah habis!",
+            text: "Silakan login kembali",
+            icon: "error",
+            button: "OK",
+          })
+          history.push('/loginadmin')
+        }
+        if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
+      })
   }
 
   const [open, setOpen] = React.useState(false);
@@ -266,7 +301,7 @@ const Course = () => {
                 </thead>
                 <tbody>
                   {
-                    course.map((e)=>{
+                    course.map((e, index)=>{
                       return(
                         <tr>
                           <td>{e.course_name}</td>
@@ -287,18 +322,11 @@ const Course = () => {
                               </DropdownToggle>
                               <DropdownMenu className="dropdown-menu-arrow" right>
                                 <DropdownItem
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
+                                  value={index}
+                                  onClick={selectAngkaDelete}
                                 >
                                   Delete
                                 </DropdownItem>
-                                <DropdownItem
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                Update
-                                </DropdownItem>
-                              
                               </DropdownMenu>
                           </UncontrolledDropdown>
                     </td>

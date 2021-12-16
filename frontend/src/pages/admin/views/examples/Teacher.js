@@ -25,9 +25,12 @@ import {
 // core components
 import Headeradmin from "../../components/Headers/Header.js";
 import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
 
 const Teacher = () => {
   const [ teacher, setTeacher ] = useState([])
+  let history = useHistory()
 
   useEffect(() => {
     let isSubscribed = true
@@ -42,6 +45,42 @@ const Teacher = () => {
     return () => isSubscribed = false
 
   }, [])
+
+  const selectAngkaDelete = e => {
+    Cookies.set("angkaDelete", e.currentTarget.value)
+    handleDeleteTeacher()
+  } 
+
+  const handleDeleteTeacher = () => {
+
+    axios
+      .delete("https://backend-fundemy.herokuapp.com/api/admin/deleteGuru", { 
+        data : {
+          token: Cookies.get("token"),
+          user_id: teacher[Cookies.get("angkaDelete")]._id,
+        }
+      })
+      .then(()=> {
+        Cookies.remove("angkaDelete")
+        swal({
+          title: "Guru Berhasil Didelete",
+          icon: "success",
+       })
+        history.push("/admin")
+      })
+      .catch((err) => {
+        if(err.response.status === 401){
+          swal({
+            title: "Session anda telah habis!",
+            text: "Silakan login kembali",
+            icon: "error",
+            button: "OK",
+          })
+          history.push('/loginadmin')
+        }
+        if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response, err.status) }
+      })
+  }
 
   return (
     <>
@@ -77,18 +116,12 @@ const Teacher = () => {
                           </DropdownToggle>
                           <DropdownMenu className="dropdown-menu-arrow" right>
                             <DropdownItem
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
+                              value={index}
+                              onClick={selectAngkaDelete}
                             >
                               Delete
                             </DropdownItem>
-                            <DropdownItem
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                            Update
-                            </DropdownItem>
-                          
+
                           </DropdownMenu>
                         </UncontrolledDropdown>
                   </td>

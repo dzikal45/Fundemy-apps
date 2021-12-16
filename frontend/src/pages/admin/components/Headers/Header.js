@@ -24,12 +24,8 @@ const Headeradmin = () => {
         }
       //console.log(students)
     })
-    .catch((err) => {
-      if(err.request){ console.log(err.request) } if(err.response){ console.log(err.response) }
-    })
-
     return() => isSubscribed = false
-  })
+  }, [])
 
   useEffect(() => {
     let isSubscribed = true
