@@ -21,6 +21,7 @@ import AdminLayout from "./pages/admin/layouts/Admin.js";
 import TeacherLayout from "./pages/teacher/layouts/Teacher.js";
 import Verifypayment from './pages/Verifypayment';
 import LoginAdmin from './pages/loginAdmin';
+import Quiz from './pages/quiz';
 import Cookies from "js-cookie";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path ="/payment" exact component={ loged ? Payment : Homepage} />
         <Route path ="/verifypayment" exact component={loged ? Verifypayment : Homepage} />
         <Route path="/loginadmin" exact component={LoginAdmin} />  
+        <Route path="/quiz" exact component={Quiz} /> 
         
       </Switch> 
     </Router>

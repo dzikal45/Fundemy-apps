@@ -69,8 +69,11 @@ const Detailpage = () => {
                 height="100%"
               />
             </div>
-
             <div style={{ height: "50px" }}></div>
+
+              <a href="/quiz" style={{textAlign:"center", color:"purple", display:"flex", float:"right", fontSize:"24px"}}>Quiz</a>
+
+            <div style={{ height: "80px" }}></div>
 
             <div class="tabs">
               <div class="tabby-tab">

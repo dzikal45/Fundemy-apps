@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../component/navbar/navbarputihuser";
+import Navbar from "../component/navbar/navbar";
 import './detailpage.css'
 import alphabet from "../component/icons/alphabet.png";
 import number from "../component/icons/number.png";
